@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Giol Vinyals-i-Roca</title>
+<meta name="description" content="Giol Vinyals-i-Roca, aerospace engineering student at Embry-Riddle Aeronautical University. Research, experience, publications and awards.">
+<meta property="og:title" content="Giol Vinyals-i-Roca">
+<meta property="og:description" content="Giol Vinyals-i-Roca, aerospace engineering student at Embry-Riddle Aeronautical University. Research, experience, publications and awards.">
+<meta property="og:image" content="https://www.giol.cat/img/giol-goaero.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single long page. Clean white (or black) ground, one full-bleed yellow band for the flagship research, date-led timeline. */
+:root {
+  --bg: #ffffff;
+  --fg: #121210;
+  --muted: #66624f;
+  --line: #e7e4d8;
+  --surface: #f7f6f0;
+  --yellow: #ffd21f;
+  --on-yellow: #121210;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f0f0d; --fg: #f4f3ec; --muted: #a9a591; --line: #2b2a25; --surface: #191915;
+    --yellow: #ffd21f; --on-yellow: #121210; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f0f0d; --fg: #f4f3ec; --muted: #a9a591; --line: #2b2a25; --surface: #191915;
+  --yellow: #ffd21f; --on-yellow: #121210; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 1rem; line-height: 1.6;
+  font-stretch: 100%;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+.wrap { max-width: 68rem; margin-inline: auto; padding-inline: 20px; }
+
+/* Nav */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.5rem; }
+.mark {
+  font-family: var(--display); font-stretch: 125%; font-weight: 800; letter-spacing: -0.01em;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.mark img { width: 30px; height: 30px; display: block; }
+.links { display: flex; gap: 1.25rem; font-size: 0.875rem; }
+.links a { text-decoration: none; color: var(--muted); }
+.links a:hover { color: var(--fg); }
+@media (max-width: 760px) { .links { display: none; } }
+.lang { display: inline-flex; border: 1.5px solid var(--fg); }
+.lang button {
+  font: 500 0.75rem/1 var(--mono); letter-spacing: 0.06em;
+  background: transparent; color: var(--fg); border: 0; padding: 0.45rem 0.65rem; cursor: pointer;
+}
+.lang button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+
+/* Hero */
+.hero { padding-block: clamp(2.5rem, 6vw, 5rem) 2.5rem; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: end; }
+@media (max-width: 760px) { .hero .wrap { grid-template-columns: 1fr; } }
+.eyebrow { font: 500 0.75rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 1rem; }
+h1 {
+  font-family: var(--display); font-stretch: 125%; font-weight: 850;
+  font-size: clamp(2rem, 7.4vw, 5rem); line-height: 0.98; letter-spacing: -0.02em;
+  margin: 0 0 1.5rem; text-wrap: balance;
+}
+h1 .hl { background: linear-gradient(transparent 62%, var(--yellow) 62%, var(--yellow) 92%, transparent 92%); padding-inline: 0.04em; }
+.tagline { font-size: clamp(1.125rem, 2vw, 1.375rem); line-height: 1.45; max-width: 34ch; margin: 0 0 1.25rem; font-weight: 500; }
+.about { color: var(--muted); max-width: 62ch; margin: 0; }
+.coords { font: 400 0.75rem/1.5 var(--mono); color: var(--muted); margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.coords b { color: var(--fg); font-weight: 500; }
+
+.photo { position: relative; max-width: 100%; width: 100%; margin: 0; }
+.photo img { display: block; width: 100%; height: auto; background: var(--surface); }
+.photo::after { content: ""; position: absolute; right: -10px; bottom: -10px; width: 40%; height: 40%; background: var(--yellow); z-index: -1; }
+.photo-wrap { position: relative; z-index: 0; max-width: 22rem; justify-self: end; width: 100%; }
+@media (max-width: 760px) { .photo-wrap { justify-self: start; max-width: 16rem; } }
+
+/* Facts */
+.facts .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--fg); }
+@media (max-width: 760px) { .facts .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.fact { padding-block: 1rem; padding-right: 1rem; border-bottom: 1px solid var(--line); }
+.fact strong { display: block; font-family: var(--display); font-stretch: 112%; font-weight: 800; font-size: 1.375rem; line-height: 1.2; }
+.fact span { font-size: 0.8125rem; color: var(--muted); }
+
+/* Sections */
+section.block { padding-block: clamp(3rem, 7vw, 5rem) 0; }
+.sec-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2rem; }
+h2 {
+  font-family: var(--display); font-stretch: 125%; font-weight: 800;
+  font-size: clamp(1.5rem, 3.4vw, 2.25rem); line-height: 1.1; letter-spacing: -0.01em; margin: 0; text-wrap: balance;
+}
+.sec-head .rule { flex: 1; height: 2px; background: var(--fg); align-self: center; }
+
+/* Featured research band */
+.band { background: var(--yellow); color: var(--on-yellow); margin-top: clamp(3rem, 7vw, 5rem); padding-block: clamp(2.5rem, 6vw, 4rem); }
+.band .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+@media (max-width: 760px) { .band .wrap { grid-template-columns: 1fr; } }
+.band .eyebrow { color: var(--on-yellow); opacity: 0.75; }
+.band h2 { color: var(--on-yellow); margin-bottom: 0.5rem; }
+.band .role { font: 500 0.8125rem/1.5 var(--mono); margin: 0 0 1.25rem; }
+.band p.desc { margin: 0 0 1.25rem; max-width: 60ch; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
+.more { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.75rem; font: 500 0.8125rem/1 var(--mono); letter-spacing: 0.04em; text-decoration: none; background: var(--fg); color: var(--bg); padding: 0.85rem 1rem; }
+.more:hover { background: var(--yellow); color: var(--on-yellow); }
+.more-dark { background: var(--on-yellow); color: var(--yellow); }
+.more-dark:hover { background: var(--bg); color: var(--fg); }
+.tags li { font: 500 0.75rem/1 var(--mono); border: 1.5px solid var(--on-yellow); padding: 0.45rem 0.6rem; }
+.naut-photo { margin: 0; width: 100%; }
+.naut-photo img { display: block; width: 100%; height: auto; border: 3px solid var(--on-yellow); }
+.naut-photo figcaption { font: 500 0.75rem/1.4 var(--mono); color: var(--on-yellow); margin-top: 0.5rem; }
+
+/* Timeline */
+.tl { list-style: none; margin: 0; padding: 0; display: grid; }
+.tl > li { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1.5rem; border-top: 1px solid var(--line); }
+.tl > li.has-img { grid-template-columns: 10rem minmax(0, 1fr) 15rem; }
+.tl figure { margin: 0; }
+.tl figure img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--surface); }
+@media (max-width: 900px) { .tl > li.has-img { grid-template-columns: 10rem minmax(0, 1fr); } .tl > li.has-img figure { grid-column: 2; max-width: 20rem; } }
+.tl > li:first-child { border-top: 0; padding-top: 0; }
+@media (max-width: 640px) { .tl > li, .tl > li.has-img { grid-template-columns: 1fr; gap: 0.35rem; } .tl > li.has-img figure { grid-column: auto; margin-top: 0.75rem; } }
+.when { font: 500 0.8125rem/1.6 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.org { font-weight: 700; font-size: 1.0625rem; margin: 0; }
+.role-line { margin: 0 0 0.6rem; color: var(--muted); }
+.tl ul { margin: 0; padding-left: 1.1rem; max-width: 66ch; }
+.tl ul li { margin-bottom: 0.25rem; }
+.tl ul li::marker { color: var(--muted); }
+.note { margin: 0.6rem 0 0; font-size: 0.875rem; display: flex; gap: 0.5rem; align-items: baseline; }
+.note::before { content: ""; width: 0.55rem; height: 0.55rem; background: var(--yellow); flex: none; transform: translateY(-0.05rem); }
+
+/* Publications */
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.pubs li { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 1rem; padding-block: 1.1rem; border-top: 1px solid var(--line); }
+.pubs li:first-child { border-top: 0; padding-top: 0; }
+.pubs .yr { font: 500 0.875rem/1.6 var(--mono); }
+.pubs .t { font-weight: 600; margin: 0; }
+.pubs .v { color: var(--muted); font-size: 0.875rem; margin: 0.15rem 0 0; }
+.pubs a { text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+/* Two-col areas */
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 3rem; }
+@media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+.list { list-style: none; margin: 0; padding: 0; }
+.list li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding-block: 0.8rem; border-top: 1px solid var(--line); }
+.list li:first-child { border-top: 0; padding-top: 0; }
+.list .when { font-size: 0.75rem; }
+.list .what { margin: 0; font-weight: 600; }
+.list .sub { margin: 0.1rem 0 0; color: var(--muted); font-size: 0.875rem; }
+h3 { font: 500 0.75rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 1rem; }
+
+/* About me */
+.about-me { display: grid; gap: 1rem; max-width: 66ch; margin-bottom: 2.5rem; }
+.about-me p { margin: 0; }
+.about-me p:first-child { font-size: clamp(1.125rem, 2vw, 1.3125rem); font-weight: 500; line-height: 1.5; }
+
+.about-photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 2.5rem; }
+@media (max-width: 760px) { .about-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.about-photos figure { margin: 0; }
+.about-photos img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--surface); }
+.about-photos figcaption { font: 400 0.75rem/1.4 var(--mono); color: var(--muted); margin-top: 0.4rem; }
+
+/* Beyond */
+.beyond { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+@media (max-width: 860px) { .beyond { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 440px) { .beyond { grid-template-columns: 1fr; } }
+.beyond div { display: flex; flex-direction: column; }
+.beyond img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--surface); margin-bottom: 0.75rem; border-bottom: 2px solid var(--fg); }
+.beyond strong { display: block; font-family: var(--display); font-stretch: 112%; font-weight: 750; font-size: 1.0625rem; }
+.beyond span { color: var(--muted); font-size: 0.9375rem; }
+
+/* Contact */
+.contact { margin-top: clamp(3rem, 7vw, 5rem); background: var(--fg); color: var(--bg); padding-block: clamp(2.5rem, 6vw, 4rem); }
+.contact .eyebrow { color: var(--bg); opacity: 0.7; }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.mail span {
+  font-family: var(--display); font-stretch: 125%; font-weight: 800;
+  font-size: clamp(1.5rem, 5vw, 3rem); letter-spacing: -0.01em; overflow-wrap: anywhere; user-select: all;
+}
+.copy {
+  font: 500 0.75rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--yellow); color: var(--on-yellow); border: 0; padding: 0.7rem 0.9rem; cursor: pointer;
+}
+.social { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.75rem; font-family: var(--mono); font-size: 0.875rem; }
+.social a { text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+footer { padding-block: 1.25rem; font: 400 0.75rem/1.5 var(--mono); color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
+</style>
+<style>
+html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="#top"><img src="img/logo.png" width="30" height="30" alt="">GVR</a>
+    <nav class="links" id="links" aria-label="Sections"></nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="btn-ca" data-lang="ca">CA</button>
+      <button type="button" id="btn-en" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" data-k="eyebrow"></p>
+        <h1>Giol<br><span class="hl">Vinyals-i-Roca</span></h1>
+        <p class="tagline" data-k="tagline"></p>
+        <p class="about" data-k="about"></p>
+        <div class="coords">
+          <span><b>Daytona Beach</b> 29.21° N 81.02° W</span>
+          <span><b>Barcelona</b> 41.39° N 2.17° E</span>
+        </div>
+      </div>
+      <div class="photo-wrap">
+        <figure class="photo"><img src="img/giol-goaero.jpg" width="799" height="1030" alt="Giol preparing the GoAero prototype on the flight test field"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="facts" aria-label="Highlights"><div class="wrap" id="facts"></div></section>
+
+  <section class="band" id="research">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" data-k="researchEyebrow"></p>
+        <h2>NAUT</h2>
+        <p class="role" data-k="nautRole"></p>
+        <p class="desc" data-k="nautDesc"></p>
+        <ul class="tags" id="naut-tags"></ul>
+        <a class="more more-dark" href="portfolio.html#naut" data-ext data-k="moreNaut"></a>
+      </div>
+      <figure class="naut-photo">
+        <img src="img/naut-early.jpg" width="1182" height="665" alt="" data-alt="nautAlt">
+        <figcaption data-k="nautCap"></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-k="hExp"></h2><span class="rule"></span></div>
+      <ol class="tl" id="exp"></ol>
+      <a class="more" href="portfolio.html" data-ext data-k="morePortfolio"></a>
+    </div>
+  </section>
+
+  <section class="block" id="publications">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-k="hPub"></h2><span class="rule"></span></div>
+      <ol class="pubs" id="pubs"></ol>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-k="hEduAwards"></h2><span class="rule"></span></div>
+      <div class="cols">
+        <div><h3 data-k="hEdu"></h3><ul class="list" id="edu"></ul></div>
+        <div><h3 data-k="hAwards"></h3><ul class="list" id="awards"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="volunteering">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-k="hVol"></h2><span class="rule"></span></div>
+      <ul class="list" id="vol"></ul>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-k="hBeyond"></h2><span class="rule"></span></div>
+      <div class="about-me" id="about-me"></div>
+      <div class="beyond" id="beyond-list"></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow" data-k="hContact"></p>
+      <div class="mail">
+        <span id="email">contact@giol.cat</span>
+        <button type="button" class="copy" id="copy" data-k="copy"></button>
+      </div>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/giol-vinyals-i-roca-01353b290/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/giol_vinyals.i.roca/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://doi.org/10.2514/6.2025-98502" target="_blank" rel="noopener">AIAA 2025</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Giol Vinyals-i-Roca</span><span data-k="updated"></span></div></footer>
+
+<script>
+/* ============================================================
+   ALL SITE CONTENT LIVES HERE. To update the site, edit this
+   object (or ask Claude to regenerate it from the latest CV).
+   ============================================================ */
+const SITE = {
+  ui: {
+    eyebrow: { en: "Aerospace Engineering Student · Embry-Riddle Aeronautical University", ca: "Estudiant d'Enginyeria Aeroespacial · Embry-Riddle Aeronautical University" },
+    tagline: { en: "Aerospace Engineering student who learns by building.", ca: "Estudiant d'enginyeria aeroespacial que aprèn construint." },
+    about: {
+      en: "I am an aerospace engineering student specializing in astronautics, with a strong background in honors courses, research, and practical development of flight systems. I have experience in propulsion, avionics, RF hardware, and autonomous UAS and rotorcraft projects, and I am driven by the long-term goal of contributing to human space exploration as an astronaut. I aspire to drive innovative space and flight technologies that expand exploration capabilities and generate significant benefits on Earth.",
+      ca: "Sóc un estudiant d'enginyeria aeroespacial especialitzat en astronàutica, amb un sòlid recorregut en assignatures d'honors, recerca i desenvolupament pràctic de sistemes de vol. Tinc experiència en propulsió, aviònica, maquinari de RF i projectes d'UAS autònoms i d'aeronaus de rotor, i em mou l'objectiu a llarg termini de contribuir a l'exploració espacial humana com a astronauta. Aspiro a impulsar tecnologies espacials i de vol innovadores que ampliïn les capacitats d'exploració i generin beneficis importants a la Terra."
+    },
+    photo: { en: "PHOTO PLACEHOLDER\nyour photo goes here", ca: "ESPAI PER A LA FOTO\naquí hi anirà la teva foto" },
+    researchEyebrow: { en: "Current research", ca: "Recerca actual" },
+    nautRole: { en: "Nano Aircraft using Underactuated Technology · Founder and Principal Investigator · Center for Advanced Air Mobility (CAAM) · Dec 2025 – current", ca: "Nano Aircraft using Underactuated Technology · Fundador i investigador principal · Center for Advanced Air Mobility (CAAM) · des de desembre de 2025" },
+    nautDesc: {
+      en: "I designed the NAUT vehicle, a MAV bicopter using a swashplateless mechanism to achieve cyclic blade pitch control. I am leading the rapid prototyping and manufacturing, integrating custom components and iterative design updates, and conducting the testing, performance analysis, and validation. NAUT-Q takes the idea to a fault-tolerant quadcopter that uses underactuated cyclic pitch control as redundancy.",
+      ca: "He dissenyat el vehicle NAUT, un bicòpter MAV que fa servir un mecanisme sense plat cíclic per aconseguir control cíclic del pas de les pales. Dirigeixo el prototipatge ràpid i la fabricació, integrant components propis i iteracions de disseny, i porto les proves, l'anàlisi de prestacions i la validació. NAUT-Q porta la idea a un quadricòpter tolerant a fallades que fa servir el control cíclic subactuat com a redundància."
+    },
+    nautCap: { en: "An early version of NAUT on the bench", ca: "Una versió antiga de NAUT al banc de proves" },
+    nautAlt: { en: "Early NAUT prototype on a workbench, with the transmitter and laptop behind", ca: "Prototip antic de NAUT sobre el banc de treball, amb l'emissora i l'ordinador al darrere" },
+    moreNaut: { en: "Read more about NAUT →", ca: "Més sobre NAUT →" },
+    morePortfolio: { en: "See all projects and activities →", ca: "Tots els projectes i activitats →" },
+    hExp: { en: "Experience", ca: "Experiència" },
+    hPub: { en: "Research publications", ca: "Publicacions de recerca" },
+    hEduAwards: { en: "Education and awards", ca: "Formació i reconeixements" },
+    hEdu: { en: "Education", ca: "Formació" },
+    hAwards: { en: "Awards", ca: "Reconeixements" },
+    hVol: { en: "Volunteer experience", ca: "Voluntariat" },
+    hBeyond: { en: "About me", ca: "Sobre mi" },
+    hContact: { en: "Get in touch", ca: "Contacte" },
+    copy: { en: "Copy", ca: "Copia" },
+    copied: { en: "Copied", ca: "Copiat" },
+    updated: { en: "Updated October 2026", ca: "Actualitzat l'octubre de 2026" }
+  },
+  nav: [
+    { id: "research", en: "Research", ca: "Recerca" },
+    { id: "experience", en: "Experience", ca: "Experiència" },
+    { id: "publications", en: "Publications", ca: "Publicacions" },
+    { id: "education", en: "Awards", ca: "Reconeixements" },
+    { id: "about", en: "About me", ca: "Sobre mi" },
+    { href: "portfolio.html", en: "Portfolio", ca: "Portfoli" },
+    { id: "contact", en: "Contact", ca: "Contacte" }
+  ],
+  facts: [
+    { k: "4.0 GPA", en: "Honors Program, Dean's List", ca: "Honors Program, Dean's List" },
+    { k: "SciTech 2027", en: "AIAA abstract accepted", ca: "Abstract acceptat a l'AIAA" },
+    { k: "AIAA 2025", en: "Published mission proposal", ca: "Proposta de missió publicada" },
+    { k: "USA + EU", en: "Certified drone pilot", ca: "Pilot de dron certificat" }
+  ],
+  nautTags: [
+    { en: "Abstract accepted at AIAA SciTech 2027", ca: "Abstract acceptat a AIAA SciTech 2027" },
+    { en: "IGNITE grant recipient", ca: "Beca IGNITE" },
+    { en: "Paper in preparation", ca: "Article en preparació" }
+  ],
+  experience: [
+    {
+      when: { en: "Oct 2024 – current", ca: "oct 2024 – actualitat" },
+      org: "Eagle Flight Research Center · GoAero Competition",
+      role: { en: "Manufacturing Lead · Propulsion System and Avionics Engineer", ca: "Cap de fabricació · Enginyer de sistema de propulsió i aviònica" },
+      points: [
+        { en: "Leading propulsion system design, component selection, and performance optimization for VTOL aircraft targeting emergency rescue missions", ca: "Dirigeixo el disseny del sistema de propulsió, la selecció de components i l'optimització de prestacions d'una aeronau VTOL per a missions de rescat d'emergència" },
+        { en: "Selecting and integrating avionics and propulsion components through simulation analysis and testing", ca: "Selecciono i integro components d'aviònica i propulsió a partir d'anàlisi per simulació i proves" },
+        { en: "Directing manufacturing engineering efforts, troubleshooting assembly issues and implementing solutions collaboratively", ca: "Dirigeixo l'enginyeria de fabricació, resolent problemes de muntatge i implementant solucions en equip" },
+        { en: "Creating detailed 3D models and engineering drawings in CATIA for propulsion and structural assemblies", ca: "Faig models 3D detallats i plànols d'enginyeria a CATIA dels conjunts de propulsió i estructura" }
+      ],
+      note: { en: "My team received the Stage 1 NASA US University Innovation Award; currently working on Stage 3", ca: "El meu equip va rebre el Stage 1 NASA US University Innovation Award; ara treballem en l'Stage 3" }
+    },
+    {
+      when: { en: "Jun – Aug 2026", ca: "jun – ago 2026" },
+      org: "isardSAT S.L. · Barcelona",
+      role: { en: "RF Engineering Intern", ca: "Becari d'enginyeria de RF" },
+      points: [
+        { en: "Designed and electromagnetically simulated bandpass and lowpass microstrip filters and stripline and microstrip directional couplers on 2- and 4-layer PCB stackups", ca: "Vaig dissenyar i simular electromagnèticament filtres microstrip passabanda i passabaix, i acobladors direccionals stripline i microstrip, en PCB de 2 i 4 capes" },
+        { en: "Took the designs through fabrication, both in-house and with external suppliers, working within stackup and manufacturing constraints", ca: "Vaig portar els dissenys a fabricació, tant interna com amb proveïdors externs, dins dels límits de l'apilament i de fabricació" },
+        { en: "Characterised the fabricated filters and couplers on the RF bench, comparing measured response against simulation", ca: "Vaig caracteritzar els filtres i acobladors fabricats al banc de RF, comparant la resposta mesurada amb la simulació" }
+      ]
+    },
+    {
+      when: { en: "Published 2025", ca: "Publicat el 2025" },
+      org: { en: "Proposal for a CubeSat probe constellation to map Titan's atmosphere", ca: "Proposta d'una constel·lació de sondes CubeSat per cartografiar l'atmosfera de Tità" },
+      role: { en: "Founder and Principal Investigator", ca: "Fundador i investigador principal" },
+      points: [
+        { en: "Completed full proposal (systems analysis, science goals, mission plan), resulting in an AIAA publication", ca: "Vaig completar la proposta sencera (anàlisi de sistemes, objectius científics, pla de missió), que va acabar en una publicació de l'AIAA" },
+        { en: "Designed and prototyped a CubeSat-scale atmospheric probe, including payload, comms, and descent system", ca: "Vaig dissenyar i prototipar una sonda atmosfèrica de mida CubeSat, amb càrrega útil, comunicacions i sistema de descens" }
+      ]
+    },
+    {
+      when: { en: "Sep 2024 – May 2025", ca: "set 2024 – mai 2025" },
+      org: "Engineering Physics Propulsion Lab · AIRBUD Project",
+      role: { en: "Operations and Testing Manager", ca: "Responsable d'operacions i proves" },
+      points: [
+        { en: "Developed ROS2 software for PX4 flight control integration", ca: "Vaig desenvolupar programari ROS2 per a la integració del control de vol PX4" },
+        { en: "Led drone operations and testing, ensuring safety compliance, and managed vehicle maintenance", ca: "Vaig dirigir les operacions i proves amb drons, garantint el compliment de seguretat, i vaig gestionar el manteniment dels vehicles" }
+      ]
+    },
+    {
+      when: { en: "Sep 2024 – Feb 2025", ca: "set 2024 – feb 2025" },
+      org: "Design, Build, Fly (DBF) Competition",
+      role: { en: "MAV Control and Flight Path Team Member", ca: "Membre de l'equip de control i trajectòria MAV" },
+      points: [
+        { en: "Developed autonomous landing software for glider aircraft with focus on precision control", ca: "Vaig desenvolupar programari d'aterratge autònom per a planadors, centrat en el control de precisió" },
+        { en: "Collaborated on flight testing and performance optimization under competition constraints", ca: "Vaig col·laborar en les proves de vol i l'optimització de prestacions dins les restriccions de la competició" }
+      ]
+    },
+    {
+      when: { en: "Jun – Aug 2023", ca: "jun – ago 2023" },
+      org: "MIT Research Science Institute · AeroAstro Department",
+      role: { en: "Autonomous UAS Research Engineer", ca: "Enginyer de recerca en UAS autònoms" },
+      points: [
+        { en: "Developed autonomous flight software with precision and attention to detail", ca: "Vaig desenvolupar programari de vol autònom amb precisió i atenció al detall" },
+        { en: "Maintained accurate assembly and test records per documentation protocols", ca: "Vaig mantenir registres precisos de muntatge i proves segons els protocols de documentació" },
+        { en: "Troubleshot complex autonomous systems issues", ca: "Vaig resoldre problemes complexos de sistemes autònoms" }
+      ]
+    }
+  ],
+  publications: [
+    { yr: "2027", t: "NAUT-Q: A Fault-Tolerant Quadcopter Architecture Using Underactuated Cyclic Pitch Control as Redundancy", v: { en: "AIAA SciTech Forum, abstract accepted", ca: "AIAA SciTech Forum, abstract acceptat" } },
+    { yr: "2025", t: "Proposal for a CubeSat probe constellation to map Titan's atmosphere", v: { en: "AIAA · DOI 10.2514/6.2025-98502", ca: "AIAA · DOI 10.2514/6.2025-98502" }, url: "https://doi.org/10.2514/6.2025-98502" },
+    { yr: "2023", t: "Tello drones autonomously following AprilTags", v: { en: "MIT Research Science Institute project", ca: "Projecte del MIT Research Science Institute" }, url: "https://www.giol.cat/en/portfolio-collections/portfolio/drones-autonomously-following-apriltags-rsi-project" }
+  ],
+  education: [
+    { when: { en: "Expected May 2028", ca: "Previst maig 2028" }, what: "Embry-Riddle Aeronautical University", sub: { en: "B.S. Aerospace Engineering | Concentration in Astronautics | Minor: UAS Applications. GPA 4.0/4.0 | Honors Program | Dean's List", ca: "Grau en Enginyeria Aeroespacial | Especialitat en Astronàutica | Menció: aplicacions UAS. GPA 4.0/4.0 | Honors Program | Dean's List" } },
+    { when: "2024", what: "Aula Escola Europea", sub: { en: "International Baccalaureate Diploma & LOMLOE (national) | science and technology. Excellence Scholarship", ca: "Diploma del Batxillerat Internacional i LOMLOE | ciència i tecnologia. Beca a l'excel·lència" } },
+    { when: "2012 – 2024", what: { en: "Professional Music Studies", ca: "Estudis professionals de música" }, sub: { en: "Professional classical music studies, specialty Viola. IEA Oriol Martorell · Barcelona Music Conservatory", ca: "Estudis professionals de música clàssica, especialitat viola. IEA Oriol Martorell · Conservatori de Música de Barcelona" } }
+  ],
+  awards: [
+    { when: "2026", what: "AIAA Foundation David and Catherine Thompson Space Technology Scholarship" },
+    { when: "2026", what: "Vertical Flight Foundation (VFF) Scholarship" },
+    { when: "2025", what: "GoAero Stage 1 NASA US University Innovation Award", sub: { en: "Team award", ca: "Premi d'equip" } },
+    { when: "2025", what: "Embry-Riddle Honors Program Scholar", sub: { en: "Selected for academic excellence, leadership, and community engagement", ca: "Seleccionat per excel·lència acadèmica, lideratge i compromís amb la comunitat" } },
+    { when: "2023 · 2024", what: "Purple Comet Math Meet", sub: { en: "Math team competition Spanish winner, 1st place (2024) and 2nd place (2023)", ca: "Competició de matemàtiques per equips, guanyadors a Espanya, 1r lloc (2024) i 2n lloc (2023)" } },
+    { when: "2023 · 2024", what: { en: "Math sprint problems competition", ca: "Competició de problemes de matemàtiques sprint" }, sub: { en: "Team competition, 2 consecutive years winner", ca: "Competició per equips, guanyadors 2 anys seguits" } },
+    { when: "2020 · 2021", what: "ESA CanSat Competition", sub: { en: "Designed and built a can-sized satellite. Catalan edition winner. Team leader, SW & HW manager, mission designer", ca: "Vam dissenyar i construir un satèl·lit de la mida d'una llauna. Guanyadors de l'edició catalana. Cap d'equip, responsable de SW i HW, disseny de la missió" } },
+    { when: "2019", what: "ESA Moon Camp Challenge", sub: { en: "2nd place, European category", ca: "2n lloc, categoria europea" } }
+  ],
+  volunteering: [
+    { when: { en: "Sep 2026 – current", ca: "set 2026 – actualitat" }, what: "Hope Place, Halifax Urban Ministries", sub: { en: "STEAM Activity Volunteer. Run weekly hands-on STEAM activities for children and families at a local family shelter", ca: "Voluntari d'activitats STEAM. Faig activitats STEAM pràctiques cada setmana per a infants i famílies en un alberg familiar" } },
+    { when: "2026", what: { en: "Aditus Program, Max Mazin Foundation", ca: "Programa Aditus, Fundació Max Mazin" }, sub: { en: "University Application Tutor. Guided local high-potential students through international university applications", ca: "Tutor de sol·licituds universitàries. Vaig acompanyar estudiants d'alt potencial en les sol·licituds a universitats internacionals" } },
+    { when: "2023 – 2024", what: "Aula Muntanya", sub: { en: "Led multi-day trekking activities for 20+ younger students, ensuring safety and a positive experience", ca: "Vaig dirigir travesses de diversos dies per a més de 20 alumnes més petits, vetllant per la seguretat i per una bona experiència" } },
+    { when: "2023 – 2024", what: "Aula 2030", sub: { en: "Led the school's carbon-neutrality project, supervising and collaborating with younger students", ca: "Vaig liderar el projecte de neutralitat de carboni de l'escola, supervisant i col·laborant amb alumnes més petits" } },
+    { when: "2022", what: "CosmoCaixa, Barcelona", sub: { en: "Explainer. Engaged museum visitors in interactive science demonstrations, explaining complex concepts clearly", ca: "Explicador. Vaig fer demostracions científiques interactives als visitants del museu, explicant conceptes complexos de manera clara" } }
+  ],
+  aboutMe: [
+    {
+      en: "I love getting hands‑on and bringing ideas to life, especially the ones that seem impossible at first. I'm passionate about what I do, and I always find a way to make things happen. Whether it's engineering projects, competitions, or any challenge that motivates me, I dive in with energy and determination.",
+      ca: "M'encanta posar les mans a la feina i donar vida a idees que semblen impossibles. M'apassiona el que faig i sempre trobo la manera de fer que les coses passin. Ja siguin projectes d'enginyeria, competicions o qualsevol repte que em motivi, m'hi llanço amb energia i determinació."
+    },
+    {
+      en: "I'm a viola and electric bass performer, and I've collaborated with orchestras and musical groups. I'm also active in social, political, and economic debates. I enjoy sports such as judo, mountain activities, triathlon, and scuba diving. As a Catalan, I'm committed to human rights, freedom, and peace. I aspire to use my skills to make the world better, leveraging technology and science for the benefit of the community.",
+      ca: "Sóc intèrpret de viola i baix elèctric, i he col·laborat amb orquestres i grups musicals. També participo activament en debats socials, polítics i econòmics. M'agraden esports com el judo, les activitats de muntanya, el triatló i el submarinisme. Com a català, estic compromès amb els drets humans, la llibertat i la pau. Aspiro a fer servir les meves capacitats per fer un món millor, posant la tecnologia i la ciència al servei de la comunitat."
+    },
+    {
+      en: "This website is a way to share everything that inspires me and the things I build along the way.",
+      ca: "Aquesta web és una manera de compartir tot allò que m'inspira i les coses que construeixo pel camí."
+    }
+  ],
+  beyond: [
+    { img: "img/about-fpv.jpg", k: "FPV", en: "8+ years flying and building FPV drones", ca: "Més de 8 anys pilotant i construint drons FPV" },
+    { img: "img/about-judo.jpg", k: "Judo", en: "12 years of training with national-level competition experience", ca: "12 anys d'entrenament, amb competició a nivell estatal" },
+    { img: "img/about-oxfam.jpg", k: { en: "Mountain and endurance", ca: "Muntanya i resistència" }, en: "Climbed Mount Kilimanjaro, completed a solo Ironman, ran a 75 km ultra for OXFAM to bring water to people in need", ca: "He pujat el Kilimanjaro, he fet un Ironman en solitari i he corregut un ultra de 75 km per a OXFAM per portar aigua a qui la necessita" },
+    { img: "img/about-viola.jpg", k: { en: "Music", ca: "Música" }, en: "12+ years of classical viola; 5 years performing electric bass with bands in concerts at diverse locations", ca: "Més de 12 anys de viola clàssica; 5 anys tocant el baix elèctric amb diferents grups en concerts arreu" }
+  ]
+};
+
+/* ---------- rendering ---------- */
+let lang = "en";
+try {
+  const saved = localStorage.getItem("giol-lang");
+  if (saved === "ca" || saved === "en") lang = saved;
+  else if ((navigator.language || "").toLowerCase().startsWith("ca")) lang = "ca";
+} catch (e) {}
+
+const t = (x) => (x == null ? "" : typeof x === "string" ? x : x[lang]);
+const $ = (id) => document.getElementById(id);
+
+function render() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-k]").forEach((el) => {
+    const v = t(SITE.ui[el.dataset.k]);
+    if (el.dataset.k === "photo") el.innerHTML = v.replace("\n", "<br>");
+    else el.textContent = v;
+  });
+  document.querySelectorAll("[data-alt]").forEach((el) => (el.alt = t(SITE.ui[el.dataset.alt])));
+  $("links").innerHTML = SITE.nav.map((n) => n.href ? `<a href="${n.href}" data-ext>${t(n)}</a>` : `<a href="#${n.id}">${t(n)}</a>`).join("");
+  document.querySelectorAll("[data-ext]").forEach((a) => { if (/^https?:/.test(a.getAttribute("href"))) { a.target = "_blank"; a.rel = "noopener"; } });
+  $("facts").innerHTML = SITE.facts.map((f) => `<div class="fact"><strong>${f.k}</strong><span>${t(f)}</span></div>`).join("");
+  $("naut-tags").innerHTML = SITE.nautTags.map((x) => `<li>${t(x)}</li>`).join("");
+  $("exp").innerHTML = SITE.experience.map((e) => `
+    <li${e.img ? ' class="has-img"' : ""}>
+      <div class="when">${t(e.when)}</div>
+      <div>
+        <p class="org">${t(e.org)}</p>
+        <p class="role-line">${t(e.role)}</p>
+        <ul>${e.points.map((p) => `<li>${t(p)}</li>`).join("")}</ul>
+        ${e.note ? `<p class="note">${t(e.note)}</p>` : ""}
+      </div>
+      ${e.img ? `<figure><img src="${e.img.src}" alt="${t(e.img.alt)}" loading="lazy"></figure>` : ""}
+    </li>`).join("");
+  $("pubs").innerHTML = SITE.publications.map((p) => `
+    <li>
+      <span class="yr">${p.yr}</span>
+      <div>
+        <p class="t">${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.t}</a>` : p.t}</p>
+        <p class="v">${t(p.v)}</p>
+      </div>
+    </li>`).join("");
+  const row = (r) => `<li><span class="when">${t(r.when)}</span><div><p class="what">${t(r.what)}</p>${r.sub ? `<p class="sub">${t(r.sub)}</p>` : ""}</div></li>`;
+  $("edu").innerHTML = SITE.education.map(row).join("");
+  $("awards").innerHTML = SITE.awards.map(row).join("");
+  $("vol").innerHTML = SITE.volunteering.map(row).join("");
+  $("about-me").innerHTML = SITE.aboutMe.map((p) => `<p>${t(p)}</p>`).join("");
+  $("beyond-list").innerHTML = SITE.beyond.map((b) => `<div>${b.img ? `<img src="${b.img}" alt="" loading="lazy">` : ""}<strong>${t(b.k)}</strong><span>${t(b)}</span></div>`).join("");
+  $("btn-ca").setAttribute("aria-pressed", String(lang === "ca"));
+  $("btn-en").setAttribute("aria-pressed", String(lang === "en"));
+}
+
+document.querySelectorAll(".lang button").forEach((b) =>
+  b.addEventListener("click", () => {
+    lang = b.dataset.lang;
+    try { localStorage.setItem("giol-lang", lang); } catch (e) {}
+    render();
+  })
+);
+
+$("copy").addEventListener("click", () => {
+  const btn = $("copy");
+  const done = () => { btn.textContent = t(SITE.ui.copied); setTimeout(() => (btn.textContent = t(SITE.ui.copy)), 1600); };
+  const fallback = () => {
+    const r = document.createRange(); r.selectNodeContents($("email"));
+    const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  };
+  try {
+    navigator.clipboard.writeText($("email").textContent).then(done, fallback);
+  } catch (e) { fallback(); }
+});
+
+render();
+</script>
+
+</body>
+</html>

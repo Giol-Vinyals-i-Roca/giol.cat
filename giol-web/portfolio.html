@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio · Giol Vinyals-i-Roca</title>
+<meta name="description" content="Engineering projects and activities by Giol Vinyals-i-Roca: NAUT, GoAero, CubeSat probes for Titan, RF hardware, autonomous drones, CanSat and more.">
+<meta property="og:title" content="Portfolio · Giol Vinyals-i-Roca">
+<meta property="og:description" content="Engineering projects and activities by Giol Vinyals-i-Roca: NAUT, GoAero, CubeSat probes for Titan, RF hardware, autonomous drones, CanSat and more.">
+<meta property="og:image" content="https://www.giol.cat/img/giol-goaero.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single long page. Clean white (or black) ground, one full-bleed yellow band for the flagship research, date-led timeline. */
+:root {
+  --bg: #ffffff;
+  --fg: #121210;
+  --muted: #66624f;
+  --line: #e7e4d8;
+  --surface: #f7f6f0;
+  --yellow: #ffd21f;
+  --on-yellow: #121210;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f0f0d; --fg: #f4f3ec; --muted: #a9a591; --line: #2b2a25; --surface: #191915;
+    --yellow: #ffd21f; --on-yellow: #121210; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f0f0d; --fg: #f4f3ec; --muted: #a9a591; --line: #2b2a25; --surface: #191915;
+  --yellow: #ffd21f; --on-yellow: #121210; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 1rem; line-height: 1.6;
+  font-stretch: 100%;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+.wrap { max-width: 68rem; margin-inline: auto; padding-inline: 20px; }
+
+/* Nav */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.5rem; }
+.mark {
+  font-family: var(--display); font-stretch: 125%; font-weight: 800; letter-spacing: -0.01em;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.mark img { width: 30px; height: 30px; display: block; }
+.links { display: flex; gap: 1.25rem; font-size: 0.875rem; }
+.links a { text-decoration: none; color: var(--muted); }
+.links a:hover { color: var(--fg); }
+@media (max-width: 760px) { .links { display: none; } }
+.lang { display: inline-flex; border: 1.5px solid var(--fg); }
+.lang button {
+  font: 500 0.75rem/1 var(--mono); letter-spacing: 0.06em;
+  background: transparent; color: var(--fg); border: 0; padding: 0.45rem 0.65rem; cursor: pointer;
+}
+.lang button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+
+/* Hero */
+.hero { padding-block: clamp(2.5rem, 6vw, 5rem) 2.5rem; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: end; }
+@media (max-width: 760px) { .hero .wrap { grid-template-columns: 1fr; } }
+.eyebrow { font: 500 0.75rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 1rem; }
+h1 {
+  font-family: var(--display); font-stretch: 125%; font-weight: 850;
+  font-size: clamp(2rem, 7.4vw, 5rem); line-height: 0.98; letter-spacing: -0.02em;
+  margin: 0 0 1.5rem; text-wrap: balance;
+}
+h1 .hl { background: linear-gradient(transparent 62%, var(--yellow) 62%, var(--yellow) 92%, transparent 92%); padding-inline: 0.04em; }
+.tagline { font-size: clamp(1.125rem, 2vw, 1.375rem); line-height: 1.45; max-width: 34ch; margin: 0 0 1.25rem; font-weight: 500; }
+.about { color: var(--muted); max-width: 62ch; margin: 0; }
+.coords { font: 400 0.75rem/1.5 var(--mono); color: var(--muted); margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.coords b { color: var(--fg); font-weight: 500; }
+
+.photo { position: relative; max-width: 100%; width: 100%; margin: 0; }
+.photo img { display: block; width: 100%; height: auto; background: var(--surface); }
+.photo::after { content: ""; position: absolute; right: -10px; bottom: -10px; width: 40%; height: 40%; background: var(--yellow); z-index: -1; }
+.photo-wrap { position: relative; z-index: 0; max-width: 22rem; justify-self: end; width: 100%; }
+@media (max-width: 760px) { .photo-wrap { justify-self: start; max-width: 16rem; } }
+
+/* Facts */
+.facts .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--fg); }
+@media (max-width: 760px) { .facts .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.fact { padding-block: 1rem; padding-right: 1rem; border-bottom: 1px solid var(--line); }
+.fact strong { display: block; font-family: var(--display); font-stretch: 112%; font-weight: 800; font-size: 1.375rem; line-height: 1.2; }
+.fact span { font-size: 0.8125rem; color: var(--muted); }
+
+/* Sections */
+section.block { padding-block: clamp(3rem, 7vw, 5rem) 0; }
+.sec-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2rem; }
+h2 {
+  font-family: var(--display); font-stretch: 125%; font-weight: 800;
+  font-size: clamp(1.5rem, 3.4vw, 2.25rem); line-height: 1.1; letter-spacing: -0.01em; margin: 0; text-wrap: balance;
+}
+.sec-head .rule { flex: 1; height: 2px; background: var(--fg); align-self: center; }
+
+/* Featured research band */
+.band { background: var(--yellow); color: var(--on-yellow); margin-top: clamp(3rem, 7vw, 5rem); padding-block: clamp(2.5rem, 6vw, 4rem); }
+.band .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+@media (max-width: 760px) { .band .wrap { grid-template-columns: 1fr; } }
+.band .eyebrow { color: var(--on-yellow); opacity: 0.75; }
+.band h2 { color: var(--on-yellow); margin-bottom: 0.5rem; }
+.band .role { font: 500 0.8125rem/1.5 var(--mono); margin: 0 0 1.25rem; }
+.band p.desc { margin: 0 0 1.25rem; max-width: 60ch; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
+.tags li { font: 500 0.75rem/1 var(--mono); border: 1.5px solid var(--on-yellow); padding: 0.45rem 0.6rem; }
+.naut-photo { margin: 0; width: 100%; }
+.naut-photo img { display: block; width: 100%; height: auto; border: 3px solid var(--on-yellow); }
+.naut-photo figcaption { font: 500 0.75rem/1.4 var(--mono); color: var(--on-yellow); margin-top: 0.5rem; }
+
+/* Timeline */
+.tl { list-style: none; margin: 0; padding: 0; display: grid; }
+.tl > li { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1.5rem; border-top: 1px solid var(--line); }
+.tl > li.has-img { grid-template-columns: 10rem minmax(0, 1fr) 15rem; }
+.tl figure { margin: 0; }
+.tl figure img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--surface); }
+@media (max-width: 900px) { .tl > li.has-img { grid-template-columns: 10rem minmax(0, 1fr); } .tl > li.has-img figure { grid-column: 2; max-width: 20rem; } }
+.tl > li:first-child { border-top: 0; padding-top: 0; }
+@media (max-width: 640px) { .tl > li, .tl > li.has-img { grid-template-columns: 1fr; gap: 0.35rem; } .tl > li.has-img figure { grid-column: auto; margin-top: 0.75rem; } }
+.when { font: 500 0.8125rem/1.6 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.org { font-weight: 700; font-size: 1.0625rem; margin: 0; }
+.role-line { margin: 0 0 0.6rem; color: var(--muted); }
+.tl ul { margin: 0; padding-left: 1.1rem; max-width: 66ch; }
+.tl ul li { margin-bottom: 0.25rem; }
+.tl ul li::marker { color: var(--muted); }
+.note { margin: 0.6rem 0 0; font-size: 0.875rem; display: flex; gap: 0.5rem; align-items: baseline; }
+.note::before { content: ""; width: 0.55rem; height: 0.55rem; background: var(--yellow); flex: none; transform: translateY(-0.05rem); }
+
+/* Publications */
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.pubs li { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 1rem; padding-block: 1.1rem; border-top: 1px solid var(--line); }
+.pubs li:first-child { border-top: 0; padding-top: 0; }
+.pubs .yr { font: 500 0.875rem/1.6 var(--mono); }
+.pubs .t { font-weight: 600; margin: 0; }
+.pubs .v { color: var(--muted); font-size: 0.875rem; margin: 0.15rem 0 0; }
+.pubs a { text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+/* Two-col areas */
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 3rem; }
+@media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+.list { list-style: none; margin: 0; padding: 0; }
+.list li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding-block: 0.8rem; border-top: 1px solid var(--line); }
+.list li:first-child { border-top: 0; padding-top: 0; }
+.list .when { font-size: 0.75rem; }
+.list .what { margin: 0; font-weight: 600; }
+.list .sub { margin: 0.1rem 0 0; color: var(--muted); font-size: 0.875rem; }
+h3 { font: 500 0.75rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 1rem; }
+
+/* About me */
+.about-me { display: grid; gap: 1rem; max-width: 66ch; margin-bottom: 2.5rem; }
+.about-me p { margin: 0; }
+.about-me p:first-child { font-size: clamp(1.125rem, 2vw, 1.3125rem); font-weight: 500; line-height: 1.5; }
+
+.about-photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 2.5rem; }
+@media (max-width: 760px) { .about-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.about-photos figure { margin: 0; }
+.about-photos img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--surface); }
+.about-photos figcaption { font: 400 0.75rem/1.4 var(--mono); color: var(--muted); margin-top: 0.4rem; }
+
+/* Beyond */
+.beyond { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+@media (max-width: 860px) { .beyond { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 440px) { .beyond { grid-template-columns: 1fr; } }
+.beyond div { display: flex; flex-direction: column; }
+.beyond img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--surface); margin-bottom: 0.75rem; border-bottom: 2px solid var(--fg); }
+.beyond strong { display: block; font-family: var(--display); font-stretch: 112%; font-weight: 750; font-size: 1.0625rem; }
+.beyond span { color: var(--muted); font-size: 0.9375rem; }
+
+/* Contact */
+.contact { margin-top: clamp(3rem, 7vw, 5rem); background: var(--fg); color: var(--bg); padding-block: clamp(2.5rem, 6vw, 4rem); }
+.contact .eyebrow { color: var(--bg); opacity: 0.7; }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.mail span {
+  font-family: var(--display); font-stretch: 125%; font-weight: 800;
+  font-size: clamp(1.5rem, 5vw, 3rem); letter-spacing: -0.01em; overflow-wrap: anywhere; user-select: all;
+}
+.copy {
+  font: 500 0.75rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--yellow); color: var(--on-yellow); border: 0; padding: 0.7rem 0.9rem; cursor: pointer;
+}
+.social { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.75rem; font-family: var(--mono); font-size: 0.875rem; }
+.social a { text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+footer { padding-block: 1.25rem; font: 400 0.75rem/1.5 var(--mono); color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
+
+/* ---------- Portfolio ---------- */
+.pf-head { padding-block: clamp(2.5rem, 6vw, 4.5rem) 1rem; }
+.pf-head h1 { font-size: clamp(2.25rem, 6vw, 4rem); margin-bottom: 1rem; }
+.pf-head p.lead { font-size: clamp(1.0625rem, 1.8vw, 1.25rem); max-width: 56ch; margin: 0; font-weight: 500; }
+.jump { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.jump a {
+  font: 500 0.8125rem/1 var(--mono); text-decoration: none; letter-spacing: 0.04em;
+  border: 1.5px solid var(--fg); padding: 0.6rem 0.8rem; display: inline-flex; gap: 0.5rem; align-items: center;
+}
+.jump a:hover { background: var(--yellow); color: var(--on-yellow); border-color: var(--yellow); }
+.jump a span { color: var(--muted); }
+.jump a:hover span { color: var(--on-yellow); }
+
+.pf-sec { padding-block: clamp(2.5rem, 6vw, 4rem) 0; scroll-margin-top: 4rem; }
+.pf-sec .intro { color: var(--muted); max-width: 62ch; margin: -1rem 0 2rem; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem 1.5rem; }
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+.card { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+@media (min-width: 901px) { .card.wide { grid-column: span 2; } .card.wide .thumb { aspect-ratio: auto; height: 100%; min-height: 0; } .card.wide { display: grid; grid-template-rows: 1fr auto auto auto; } }
+.card .thumb { position: relative; aspect-ratio: 4 / 3; background: var(--surface); overflow: hidden; border-bottom: 3px solid var(--fg); }
+.card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }
+.card:hover .thumb img { transform: scale(1.03); }
+.card:hover .thumb, .card:focus-visible .thumb { border-bottom-color: var(--yellow); }
+.card .tile {
+  width: 100%; height: 100%; display: grid; place-items: center; background: var(--fg); color: var(--yellow);
+  font-family: var(--display); font-stretch: 125%; font-weight: 850; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.01em;
+}
+.card .flag { position: absolute; left: 0; top: 0; background: var(--yellow); color: var(--on-yellow); font: 500 0.6875rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; padding: 0.45rem 0.55rem; }
+.card .meta { font: 500 0.75rem/1.4 var(--mono); color: var(--muted); letter-spacing: 0.04em; margin: 0.85rem 0 0.35rem; font-variant-numeric: tabular-nums; }
+.card h3.ct { font: 750 1.1875rem/1.25 var(--display); font-stretch: 105%; letter-spacing: -0.005em; text-transform: none; color: var(--fg); margin: 0 0 0.4rem; text-wrap: balance; }
+.card p { margin: 0; color: var(--muted); font-size: 0.9375rem; }
+@media (prefers-reduced-motion: reduce) { .card .thumb img { transition: none; } }
+
+/* Detail */
+.detail { padding-block: 1.5rem 0; }
+.back { font: 500 0.8125rem/1 var(--mono); text-decoration: none; display: inline-flex; gap: 0.4rem; padding-block: 0.5rem; color: var(--muted); }
+.back:hover { color: var(--fg); }
+.d-head { display: grid; gap: 1rem; padding-block: 1.25rem 1.75rem; }
+.d-head h1 { font-size: clamp(2rem, 5.2vw, 3.5rem); margin: 0; }
+.d-head .sub { font-size: clamp(1.0625rem, 1.8vw, 1.25rem); max-width: 60ch; margin: 0; font-weight: 500; }
+.facts-d { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--fg); margin-bottom: 2rem; }
+@media (max-width: 760px) { .facts-d { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.facts-d div { padding: 0.8rem 1rem 0.8rem 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.facts-d dt { font: 500 0.6875rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+.facts-d dd { margin: 0; font-weight: 600; font-size: 0.9375rem; overflow-wrap: anywhere; }
+.d-hero { margin: 0 0 2.5rem; }
+.d-hero img { display: block; width: 100%; max-height: 34rem; object-fit: cover; background: var(--surface); }
+.d-hero figcaption, .gallery figcaption { font: 400 0.75rem/1.5 var(--mono); color: var(--muted); margin-top: 0.45rem; }
+.d-body { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 2.5rem 3.5rem; align-items: start; }
+@media (max-width: 860px) { .d-body { grid-template-columns: 1fr; } }
+.d-body h2 { font-size: 1.25rem; margin: 0 0 0.75rem; }
+.d-body .txt { display: grid; gap: 1.75rem; }
+.d-body .txt p { margin: 0 0 0.8rem; max-width: 66ch; }
+.d-body .txt p:last-child { margin-bottom: 0; }
+.d-body ul { margin: 0; padding-left: 1.1rem; max-width: 66ch; }
+.d-body ul li { margin-bottom: 0.35rem; }
+.d-body ul li::marker { color: var(--muted); }
+.result { background: var(--yellow); color: var(--on-yellow); padding: 1.25rem 1.25rem 1.35rem; }
+.result h2 { color: var(--on-yellow); font-size: 0.75rem; font-family: var(--mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.result p { margin: 0; font-weight: 600; font-size: 1.0625rem; line-height: 1.45; }
+.side { display: grid; gap: 1.5rem; }
+.tools { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0 !important; margin: 0; }
+.tools li { font: 500 0.75rem/1 var(--mono); border: 1.5px solid var(--fg); padding: 0.4rem 0.55rem; margin: 0 !important; }
+.links a { display: block; font-family: var(--mono); font-size: 0.875rem; padding-block: 0.25rem; text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.gallery-wrap { margin-top: 3rem; }
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem 1rem; }
+@media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 440px) { .gallery { grid-template-columns: 1fr; } }
+.gallery figure { margin: 0; }
+.gallery img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--surface); }
+.gallery img.contain { object-fit: contain; background: #ffffff; }
+.pn { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3.5rem; border-top: 2px solid var(--fg); }
+.pn a { text-decoration: none; padding-block: 1rem; display: grid; gap: 0.25rem; min-width: 0; }
+.pn a:last-child { text-align: right; }
+.pn small { font: 500 0.6875rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.pn strong { font-family: var(--display); font-weight: 750; overflow-wrap: anywhere; }
+.pn a:hover strong { text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 3px; text-underline-offset: 4px; }
+</style>
+<style>
+html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="#top"><img src="img/logo.png" width="30" height="30" alt="">GVR</a>
+    <nav class="links" aria-label="Sections">
+      <a id="nav-home" href="index.html" data-k="navHome"></a>
+      <a href="#projects" data-k="hProjects"></a>
+      <a href="#activities" data-k="hActivities"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="btn-ca" data-lang="ca">CA</button>
+      <button type="button" id="btn-en" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div id="index-view">
+    <section class="pf-head">
+      <div class="wrap">
+        <p class="eyebrow">Portfolio</p>
+        <h1 data-k="pfTitle"></h1>
+        <p class="lead" data-k="pfLead"></p>
+        <div class="jump" id="jump"></div>
+      </div>
+    </section>
+    <section class="pf-sec" id="projects">
+      <div class="wrap">
+        <div class="sec-head"><h2 data-k="hProjects"></h2><span class="rule"></span></div>
+        <p class="intro" data-k="projectsIntro"></p>
+        <div class="grid" id="grid-projects"></div>
+      </div>
+    </section>
+    <section class="pf-sec" id="activities">
+      <div class="wrap">
+        <div class="sec-head"><h2 data-k="hActivities"></h2><span class="rule"></span></div>
+        <p class="intro" data-k="activitiesIntro"></p>
+        <div class="grid" id="grid-activities"></div>
+      </div>
+    </section>
+  </div>
+
+  <article class="detail" id="detail-view" hidden>
+    <div class="wrap" id="detail"></div>
+  </article>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow" data-k="hContact"></p>
+      <div class="mail">
+        <span id="email">contact@giol.cat</span>
+        <button type="button" class="copy" id="copy" data-k="copy"></button>
+      </div>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/giol-vinyals-i-roca-01353b290/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/giol_vinyals.i.roca/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Giol Vinyals-i-Roca</span><span data-k="updated"></span></div></footer>
+
+<script>
+/* ============================================================
+   PORTFOLIO CONTENT. One entry per project or activity.
+   kind: "project" (technical) or "activity".
+   ============================================================ */
+const UI = {
+  navHome: { en: "Home", ca: "Inici" },
+  pfTitle: { en: "Things I've built and done", ca: "Coses que he construït i fet" },
+  pfLead: { en: "A selection of the projects and activities that have shaped me, from my first Arduino circuits to the aircraft I work on today.", ca: "Una selecció dels projectes i activitats que m'han fet com sóc, des dels meus primers circuits amb Arduino fins a les aeronaus en què treballo avui." },
+  hProjects: { en: "Engineering projects", ca: "Projectes d'enginyeria" },
+  hActivities: { en: "Activities", ca: "Activitats" },
+  projectsIntro: { en: "Research, competitions and engineering work, newest first.", ca: "Recerca, competicions i feina d'enginyeria, de més recent a més antic." },
+  activitiesIntro: { en: "Music, sport and volunteering. The things that keep me in balance and that taught me as much as any project.", ca: "Música, esport i voluntariat. El que em manté en equilibri i que m'ha ensenyat tant com qualsevol projecte." },
+  back: { en: "← All projects and activities", ca: "← Tots els projectes i activitats" },
+  when: { en: "When", ca: "Quan" }, where: { en: "Where", ca: "On" }, role: { en: "Role", ca: "Rol" }, team: { en: "Team", ca: "Equip" },
+  whatIDid: { en: "What I did", ca: "Què vaig fer" },
+  about: { en: "About the project", ca: "Sobre el projecte" },
+  result: { en: "Result", ca: "Resultat" },
+  tools: { en: "Tools", ca: "Eines" },
+  links: { en: "Links", ca: "Enllaços" },
+  gallery: { en: "Gallery", ca: "Galeria" },
+  prev: { en: "Previous", ca: "Anterior" }, next: { en: "Next", ca: "Següent" },
+  current: { en: "Current", ca: "Actual" },
+  hContact: { en: "Get in touch", ca: "Contacte" },
+  copy: { en: "Copy", ca: "Copia" }, copied: { en: "Copied", ca: "Copiat" },
+  updated: { en: "Updated October 2026", ca: "Actualitzat l'octubre de 2026" }
+};
+
+const ITEMS = [
+  /* ---------------- PROJECTS ---------------- */
+  {
+    id: "naut", kind: "project", current: true, wide: true,
+    cat: { en: "Research", ca: "Recerca" }, year: { en: "2025 – now", ca: "2025 – ara" },
+    title: "NAUT",
+    sub: { en: "Nano Aircraft using Underactuated Technology. A MAV bicopter with cyclic blade pitch control and no swashplate.", ca: "Nano Aircraft using Underactuated Technology. Un bicòpter MAV amb control cíclic del pas de les pales i sense plat cíclic." },
+    card: { en: "My own rotorcraft research program: cyclic pitch control from an underactuated rotor.", ca: "El meu propi programa de recerca en aeronaus de rotor: control cíclic amb un rotor subactuat." },
+    thumb: "pimg/naut-early.jpg",
+    facts: {
+      when: { en: "Dec 2025 – current", ca: "des de desembre de 2025" },
+      where: "Center for Advanced Air Mobility (CAAM), Embry-Riddle",
+      role: { en: "Founder and Principal Investigator", ca: "Fundador i investigador principal" }
+    },
+    about: [
+      { en: "NAUT is a MAV bicopter that uses a swashplateless mechanism to achieve cyclic blade pitch control. Instead of the heavy and complex swashplate of a conventional helicopter, the rotor is underactuated, so the same motor that spins it also controls the pitch of the blades over each revolution.", ca: "NAUT és un bicòpter MAV que fa servir un mecanisme sense plat cíclic per aconseguir control cíclic del pas de les pales. En lloc del plat cíclic pesant i complex d'un helicòpter convencional, el rotor és subactuat, de manera que el mateix motor que el fa girar també controla el pas de les pales a cada volta." },
+      { en: "NAUT-Q takes the idea to a fault-tolerant quadcopter that uses underactuated cyclic pitch control as redundancy.", ca: "NAUT-Q porta la idea a un quadricòpter tolerant a fallades que fa servir el control cíclic subactuat com a redundància." }
+    ],
+    did: [
+      { en: "Designed the NAUT vehicle and its swashplateless rotor", ca: "Vaig dissenyar el vehicle NAUT i el seu rotor sense plat cíclic" },
+      { en: "Rapid prototyping and manufacturing, integrating custom components and iterative design updates", ca: "Prototipatge ràpid i fabricació, integrant components propis i iteracions de disseny" },
+      { en: "Conducting testing, performance analysis, and validation", ca: "Proves, anàlisi de prestacions i validació" }
+    ],
+    result: { en: "Abstract accepted at AIAA SciTech 2027, IGNITE grant recipient, paper in preparation.", ca: "Abstract acceptat a AIAA SciTech 2027, beca IGNITE i article en preparació." },
+    gallery: [ { src: "pimg/naut-early.jpg", cap: { en: "An early version of NAUT on the bench", ca: "Una versió antiga de NAUT al banc de proves" } } ]
+  },
+  {
+    id: "goaero", kind: "project", current: true,
+    cat: { en: "Competition", ca: "Competició" }, year: { en: "2024 – now", ca: "2024 – ara" },
+    title: "GoAero · Team Talon",
+    sub: { en: "An electric VTOL aircraft for emergency rescue missions, built at the Eagle Flight Research Center.", ca: "Una aeronau VTOL elèctrica per a missions de rescat d'emergència, construïda a l'Eagle Flight Research Center." },
+    card: { en: "Propulsion, avionics and manufacturing for a rescue VTOL. Stage 1 NASA award winner.", ca: "Propulsió, aviònica i fabricació d'un VTOL de rescat. Premiat per la NASA a l'Stage 1." },
+    thumb: "pimg/goaero-team.jpg",
+    facts: {
+      when: { en: "Oct 2024 – current", ca: "des d'octubre de 2024" },
+      where: "Eagle Flight Research Center, Daytona Beach",
+      role: { en: "Manufacturing Lead · Propulsion System and Avionics Engineer", ca: "Cap de fabricació · Enginyer de propulsió i aviònica" },
+      team: "Team Talon"
+    },
+    about: [
+      { en: "GoAero is an international competition to design, build and fly emergency response aircraft. Our entry, Talon, is a VTOL aircraft meant to support rescue operations, and I have worked on it since the first design stage.", ca: "GoAero és una competició internacional per dissenyar, construir i volar aeronaus de resposta a emergències. La nostra proposta, Talon, és una aeronau VTOL pensada per donar suport a operacions de rescat, i hi treballo des de la primera fase de disseny." },
+      { en: "In Stage 1 (Oct – Dec 2024) we completed a full design cycle and submitted an engineering report. In Stage 2 (spring to fall 2025) we built and tested a 40%-scale demonstrator, Talon v2, to refine performance, validate reliability and test the integrated system in real conditions. We are now working on Stage 3.", ca: "A l'Stage 1 (oct – des 2024) vam completar un cicle de disseny sencer i vam entregar un informe d'enginyeria. A l'Stage 2 (de la primavera a la tardor de 2025) vam construir i provar un demostrador a escala del 40%, el Talon v2, per afinar les prestacions, validar la fiabilitat i provar el sistema integrat en condicions reals. Ara treballem en l'Stage 3." }
+    ],
+    did: [
+      { en: "Leading propulsion system design, component selection, and performance optimization", ca: "Dirigeixo el disseny del sistema de propulsió, la selecció de components i l'optimització de prestacions" },
+      { en: "Selecting and integrating avionics and propulsion components through simulation analysis and testing", ca: "Selecciono i integro l'aviònica i la propulsió a partir de simulació i proves" },
+      { en: "Analyzed propulsion performance through simulation using induced power reduction and the power reduction method", ca: "Vaig analitzar les prestacions de la propulsió per simulació amb la reducció de potència induïda i el mètode de reducció de potència" },
+      { en: "Directing manufacturing engineering efforts, troubleshooting assembly issues and implementing solutions collaboratively", ca: "Dirigeixo l'enginyeria de fabricació, resolent problemes de muntatge i implementant solucions en equip" },
+      { en: "Creating detailed 3D models and engineering drawings in CATIA for propulsion and structural assemblies", ca: "Faig models 3D i plànols d'enginyeria a CATIA dels conjunts de propulsió i estructura" }
+    ],
+    result: { en: "Our team received the Stage 1 NASA US University Innovation Award. In Stage 2 we built and tested Talon v2, a 40%-scale demonstrator.", ca: "El nostre equip va rebre el Stage 1 NASA US University Innovation Award. A l'Stage 2 vam construir i provar el Talon v2, un demostrador a escala del 40%." },
+    tools: ["CATIA", "Simulation", "Manufacturing"],
+    gallery: [
+      { src: "pimg/goaero-field.jpg", cap: { en: "Preparing Talon v2 on the test field", ca: "Preparant el Talon v2 al camp de proves" } },
+      { src: "pimg/goaero-3d.jpg", cap: { en: "CAD model", ca: "Model CAD" }, contain: true },
+      { src: "pimg/goaero-scheme.jpg", cap: { en: "From sketches to the rescue concept", ca: "Dels esbossos al concepte de rescat" }, contain: true },
+      { src: "pimg/goaero-tests.jpg", cap: { en: "Field tests", ca: "Proves de camp" } },
+      { src: "pimg/goaero-work.jpg", cap: { en: "Assembly in the workshop", ca: "Muntatge al taller" } },
+      { src: "pimg/goaero-welding.jpg", cap: { en: "Welding at the EFRC", ca: "Soldant a l'EFRC" } },
+      { src: "pimg/goaero-group.jpg", cap: { en: "Team Talon", ca: "L'equip Talon" } }
+    ]
+  },
+  {
+    id: "isardsat", kind: "project",
+    cat: { en: "Industry", ca: "Empresa" }, year: "2026",
+    title: { en: "RF filters and couplers at isardSAT", ca: "Filtres i acobladors de RF a isardSAT" },
+    sub: { en: "Microstrip and stripline RF components taken from electromagnetic simulation through fabrication to bench measurement.", ca: "Components de RF microstrip i stripline, des de la simulació electromagnètica fins a la fabricació i la mesura al banc." },
+    card: { en: "Microwave design from simulation to the RF bench, during my summer internship.", ca: "Disseny de microones des de la simulació fins al banc de RF, durant les pràctiques d'estiu." },
+    thumb: "pimg/isard-bench.jpg",
+    facts: {
+      when: { en: "Jun – Aug 2026", ca: "jun – ago 2026" },
+      where: "isardSAT S.L., Barcelona",
+      role: { en: "RF Engineering Intern", ca: "Becari d'enginyeria de RF" }
+    },
+    about: [
+      { en: "During the summer of 2026 I joined isardSAT in Barcelona as an RF engineering intern. I had never designed microwave hardware before, so I learned it by doing: designing, simulating, building and measuring.", ca: "L'estiu de 2026 vaig entrar a isardSAT, a Barcelona, com a becari d'enginyeria de RF. No havia dissenyat mai maquinari de microones, així que el vaig aprendre fent-lo: dissenyant, simulant, fabricant i mesurant." }
+    ],
+    did: [
+      { en: "Designed and electromagnetically simulated bandpass and lowpass microstrip filters and stripline and microstrip directional couplers on 2- and 4-layer PCB stackups", ca: "Vaig dissenyar i simular electromagnèticament filtres microstrip passabanda i passabaix, i acobladors direccionals stripline i microstrip, en PCB de 2 i 4 capes" },
+      { en: "Took the designs through fabrication, both in-house and with external suppliers, working within stackup and manufacturing constraints", ca: "Vaig portar els dissenys a fabricació, interna i amb proveïdors externs, dins dels límits de l'apilament i de fabricació" },
+      { en: "Characterised the fabricated filters and microstrip couplers on the RF bench, comparing measured response against simulation", ca: "Vaig caracteritzar els filtres i acobladors fabricats al banc de RF, comparant la resposta mesurada amb la simulació" }
+    ],
+    tools: ["Sonnet Lite", "Qucs TransCalc", "PCB stackups", "RF bench"],
+    gallery: [
+      { src: "pimg/isard-bench.jpg", cap: { en: "Measuring a fabricated filter on the RF bench", ca: "Mesurant un filtre fabricat al banc de RF" } },
+      { src: "pimg/isard-board.jpg", cap: { en: "4-layer test board layout", ca: "Disseny de la placa de proves de 4 capes" }, contain: true },
+      { src: "pimg/isard-sim.jpg", cap: { en: "Electromagnetic simulation of a bandpass filter", ca: "Simulació electromagnètica d'un filtre passabanda" }, contain: true }
+    ]
+  },
+  {
+    id: "titan", kind: "project",
+    cat: { en: "Research", ca: "Recerca" }, year: "2025",
+    title: { en: "CubeSat probes for Titan", ca: "Sondes CubeSat per a Tità" },
+    sub: { en: "A proposal for a CubeSat probe constellation to map Titan's atmosphere, published by AIAA, with a hardware prototype of the probe.", ca: "Una proposta de constel·lació de sondes CubeSat per cartografiar l'atmosfera de Tità, publicada per l'AIAA, amb un prototip físic de la sonda." },
+    card: { en: "A full mission proposal for Saturn's largest moon, and a working probe prototype.", ca: "Una proposta de missió sencera per a la lluna més gran de Saturn, i un prototip de sonda que funciona." },
+    thumb: "pimg/titan-capo.jpg",
+    facts: {
+      when: { en: "Published 2025", ca: "Publicat el 2025" },
+      where: "Barcelona · Daytona Beach",
+      role: { en: "Founder and Principal Investigator", ca: "Fundador i investigador principal" },
+      team: { en: "Solo project", ca: "Projecte individual" }
+    },
+    about: [
+      { en: "Titan is the only moon in the Solar System with a thick atmosphere. This project proposes a constellation of small CubeSat-scale probes to map it: a mother spacecraft in a 600 km, high-inclination orbit, navigation satellites, and CAPO probes descending through the atmosphere.", ca: "Tità és l'única lluna del Sistema Solar amb una atmosfera densa. Aquest projecte proposa una constel·lació de sondes petites, de mida CubeSat, per cartografiar-la: una nau mare en una òrbita de 600 km d'alta inclinació, satèl·lits de navegació i sondes CAPO que descendeixen per l'atmosfera." }
+    ],
+    did: [
+      { en: "Completed the full proposal (systems analysis, science goals, mission plan), resulting in an AIAA publication", ca: "Vaig completar la proposta sencera (anàlisi de sistemes, objectius científics, pla de missió), que va acabar en una publicació de l'AIAA" },
+      { en: "Designed and prototyped a CubeSat-scale atmospheric probe, including payload, comms, and descent system", ca: "Vaig dissenyar i prototipar una sonda atmosfèrica de mida CubeSat, amb càrrega útil, comunicacions i sistema de descens" },
+      { en: "Modelled the probe and its stacked electronics boards in Fusion 360", ca: "Vaig modelar la sonda i les seves plaques electròniques apilades a Fusion 360" }
+    ],
+    result: { en: "Published and presented at the AIAA 2025 Regional Student Conference. DOI 10.2514/6.2025-98502", ca: "Publicat i presentat a l'AIAA 2025 Regional Student Conference. DOI 10.2514/6.2025-98502" },
+    tools: ["Fusion 360", "PCB design", "Systems engineering"],
+    links: [ { href: "https://doi.org/10.2514/6.2025-98502", label: "doi.org/10.2514/6.2025-98502" } ],
+    gallery: [
+      { src: "pimg/titan-diagram.jpg", cap: { en: "Mission architecture", ca: "Arquitectura de la missió" }, contain: true },
+      { src: "pimg/titan-cad.jpg", cap: { en: "3D model in Fusion 360", ca: "Model 3D a Fusion 360" }, contain: true },
+      { src: "pimg/titan-capo.jpg", cap: { en: "CAPO probe prototype", ca: "Prototip de la sonda CAPO" } }
+    ]
+  },
+  {
+    id: "rsi", kind: "project",
+    cat: { en: "Research", ca: "Recerca" }, year: "2023",
+    title: { en: "Drones autonomously following AprilTags", ca: "Drons que segueixen AprilTags de manera autònoma" },
+    sub: { en: "My research at MIT's Research Science Institute: affordable autonomous flight with computer vision.", ca: "La meva recerca al Research Science Institute del MIT: vol autònom assequible amb visió per computador." },
+    card: { en: "Computer vision lets a small drone find and follow printed markers, and fly through gates on its own.", ca: "La visió per computador permet a un dron petit trobar i seguir marcadors impresos, i passar per portes tot sol." },
+    thumb: "pimg/rsi-tracking.jpg",
+    facts: {
+      when: { en: "Summer 2023", ca: "Estiu de 2023" },
+      where: "REALM lab, AeroAstro, MIT",
+      role: { en: "Autonomous UAS Research Engineer", ca: "Investigador en UAS autònoms" },
+      team: { en: "With Charles Dawson and Kunal Garg, supervised by Prof. Chuchu Fan", ca: "Amb Charles Dawson i Kunal Garg, supervisat per la Prof. Chuchu Fan" }
+    },
+    about: [
+      { en: "The Research Science Institute (RSI) brings around 100 high school students to MIT each summer to do a full research cycle: reading the current literature, planning and carrying out a project, and presenting it in written and oral reports like at an academic conference. It was one of the most rewarding experiences I've had, I learned a lot and met amazing people.", ca: "El Research Science Institute (RSI) porta cada estiu uns 100 estudiants de batxillerat al MIT per fer un cicle de recerca sencer: llegir la literatura actual, planificar i fer un projecte, i presentar-lo en un informe escrit i oral com en un congrés acadèmic. Va ser una de les experiències més enriquidores que he viscut, vaig aprendre molt i vaig conèixer gent increïble." },
+      { en: "My project used the Tello drone, chosen because it is affordable and adaptable. I wrote software that uses computer vision to detect AprilTags, printed visual markers, compute where they are relative to the drone, and command velocities to move towards them. With the same method the drone could autonomously fly through a course of gates. I also studied how to port the software to a bigger drone that I built, so the ideas could scale to package delivery, search and rescue, and disaster management.", ca: "El meu projecte feia servir el dron Tello, triat perquè és assequible i adaptable. Vaig escriure un programari que fa servir visió per computador per detectar AprilTags, uns marcadors visuals impresos, calcular on són respecte al dron i ordenar-li velocitats per anar-hi. Amb el mateix mètode, el dron podia passar tot sol per un circuit de portes. També vaig estudiar com portar el programari a un dron més gran que vaig construir, perquè les idees es poguessin aplicar al repartiment de paquets, la cerca i rescat o la gestió de desastres." }
+    ],
+    did: [
+      { en: "Developed autonomous flight software with real-time AprilTag detection and tracking", ca: "Vaig desenvolupar programari de vol autònom amb detecció i seguiment d'AprilTags en temps real" },
+      { en: "Built an autonomous gate course using the same method", ca: "Vaig muntar un circuit de portes autònom amb el mateix mètode" },
+      { en: "Built a new autonomous drone prototype to scale the work", ca: "Vaig construir un nou prototip de dron autònom per escalar la feina" },
+      { en: "Maintained accurate assembly and test records, and presented the results in a paper and a final talk", ca: "Vaig portar registres precisos de muntatge i proves, i vaig presentar els resultats en un article i una presentació final" }
+    ],
+    result: { en: "A research paper and a low-cost, safe platform for students to start with autonomous drones.", ca: "Un article de recerca i una plataforma segura i de baix cost perquè els estudiants comencin amb drons autònoms." },
+    tools: ["Computer vision", "AprilTags", "Tello"],
+    gallery: [
+      { src: "pimg/rsi-tracking.jpg", cap: { en: "The drone's view while tracking an AprilTag", ca: "La vista del dron mentre segueix un AprilTag" } },
+      { src: "pimg/rsi-diagram.jpg", cap: { en: "How the drone moves towards the tag", ca: "Com es mou el dron cap al marcador" }, contain: true },
+      { src: "pimg/rsi-gates.jpg", cap: { en: "Autonomous gate course", ca: "Circuit de portes autònom" }, contain: true },
+      { src: "pimg/rsi-person.jpg", cap: { en: "Person detection", ca: "Detecció de persones" } },
+      { src: "pimg/rsi-prototype.jpg", cap: { en: "The new drone prototype", ca: "El nou prototip de dron" } },
+      { src: "pimg/rsi-build.jpg", cap: { en: "Building the prototype", ca: "Construint el prototip" } },
+      { src: "pimg/rsi-tello.jpg", cap: { en: "The Tello drone", ca: "El dron Tello" } },
+      { src: "pimg/rsi-talk.jpg", cap: { en: "Final presentation", ca: "Presentació final" } },
+      { src: "pimg/rsi-group.jpg", cap: { en: "RSI 2023", ca: "RSI 2023" } }
+    ]
+  },
+  {
+    id: "cansat", kind: "project",
+    cat: { en: "Competition", ca: "Competició" }, year: "2020 – 21",
+    title: "ESA CanSat · CatSat",
+    sub: { en: "A satellite the size of a soda can, designed, built and launched with my team in ESA's CanSat competition.", ca: "Un satèl·lit de la mida d'una llauna de refresc, dissenyat, construït i llançat amb el meu equip a la competició CanSat de l'ESA." },
+    card: { en: "Radiation and CO2 sensing inside a can-sized satellite. Catalan edition winners.", ca: "Mesura de radiació i CO2 dins d'un satèl·lit de la mida d'una llauna. Guanyadors de l'edició catalana." },
+    thumb: "pimg/cansat-proto.jpg",
+    facts: {
+      when: "2020 – 2021",
+      where: "Barcelona",
+      role: { en: "Team leader, SW & HW manager, mission designer", ca: "Cap d'equip, responsable de SW i HW, disseny de la missió" },
+      team: "CatSat"
+    },
+    about: [
+      { en: "A CanSat is a simulation of a real satellite, integrated within the volume and shape of a soft drinks can. The challenge is to fit all the main subsystems, like power, sensors and communication, into that tiny space. The CanSat is launched to about one kilometre by a rocket, or dropped from a platform, drone or balloon, and it has to carry out an experiment, land safely and send back data.", ca: "Un CanSat és una simulació d'un satèl·lit real dins del volum i la forma d'una llauna de refresc. El repte és encabir-hi tots els subsistemes principals, com l'energia, els sensors i les comunicacions. El CanSat s'enlaira a un quilòmetre d'altura amb un coet, o es deixa caure des d'una plataforma, un dron o un globus, i ha de fer un experiment, aterrar sa i estalvi i enviar dades." },
+      { en: "Our first CanSat was NRDLS, a Nuclear Radiation Detection and Location System that detects radiation and places it on a virtual map. It carried a radiation sensor, GPS, pressure, temperature and humidity sensors, a compass, and a buzzer and solar panel for recovery.", ca: "El nostre primer CanSat va ser NRDLS, un sistema de detecció i localització de radiació nuclear que detecta la radiació i la situa en un mapa virtual. Portava un sensor de radiació, GPS, sensors de pressió, temperatura i humitat, una brúixola, i un brunzidor i una placa solar per a la recuperació." },
+      { en: "The next version, CatSat², had a modular design in Fusion 360 and a 3D-printed PLA case. The electronics were stacked on three levels: an Arduino with a 1-cell 5600 mAh LiPo and sensors for humidity, temperature, pressure, CO2 and TVOC; a Geiger counter with a GM tube; and a recovery system with a buzzer controlled from the ground station and a solar-powered relay as failsafe. The primary mission measured atmospheric CO2 and the secondary one nuclear radiation.", ca: "La versió següent, CatSat², tenia un disseny modular fet amb Fusion 360 i una carcassa impresa en 3D amb PLA. L'electrònica anava apilada en tres nivells: un Arduino amb una LiPo d'1 cel·la de 5600 mAh i sensors d'humitat, temperatura, pressió, CO2 i TVOC; un comptador Geiger amb tub GM; i un sistema de recuperació amb un brunzidor controlat des de l'estació de terra i un relé alimentat per una placa solar com a sistema de seguretat. La missió primària mesurava el CO2 atmosfèric i la secundària, la radiació nuclear." }
+    ],
+    did: [
+      { en: "Led the team and designed the mission", ca: "Vaig liderar l'equip i dissenyar la missió" },
+      { en: "Managed the software and hardware of the satellite", ca: "Vaig portar el programari i el maquinari del satèl·lit" },
+      { en: "Designed and built a can-sized satellite with the team", ca: "Vam dissenyar i construir un satèl·lit de la mida d'una llauna en equip" }
+    ],
+    result: { en: "Winners of the Catalan edition of the ESA CanSat Competition in 2020 and 2021.", ca: "Guanyadors de l'edició catalana de la competició CanSat de l'ESA el 2020 i el 2021." },
+    tools: ["Arduino", "Fusion 360", "3D printing", "PCB design"],
+    links: [ { href: "https://catsatcontact.wixsite.com/my-site/en", label: "CatSat website" } ],
+    gallery: [
+      { src: "pimg/cansat-cad.jpg", cap: { en: "Modular design in Fusion 360", ca: "Disseny modular a Fusion 360" }, contain: true },
+      { src: "pimg/cansat-proto.jpg", cap: { en: "Assembled prototype", ca: "Prototip muntat" } },
+      { src: "pimg/cansat-boards.jpg", cap: { en: "Prototypes and boards", ca: "Prototips i plaques" } },
+      { src: "pimg/cansat-team-field.jpg", cap: { en: "Launch day", ca: "El dia del llançament" } },
+      { src: "pimg/cansat-team.jpg", cap: { en: "The CatSat team", ca: "L'equip CatSat" } }
+    ]
+  },
+  {
+    id: "mooncamp", kind: "project",
+    cat: { en: "Competition", ca: "Competició" }, year: "2019",
+    title: "ESA Moon Camp Challenge",
+    sub: { en: "A lunar base where astronauts could live, designed in 3D for the European Space Agency.", ca: "Una base lunar on podrien viure astronautes, dissenyada en 3D per a l'Agència Espacial Europea." },
+    card: { en: "Designing a home on the Moon. 2nd place in Europe.", ca: "Dissenyar una casa a la Lluna. 2n lloc a Europa." },
+    thumb: "pimg/mooncamp-1.jpg",
+    facts: {
+      where: "Barcelona",
+      team: { en: "Me and two colleagues", ca: "Jo i dos companys" }
+    },
+    about: [
+      { en: "The challenge was to imagine and design a lunar base where astronauts could live. We built a 3D model in Tinkercad and wrote a document answering ESA's questions about how the base would work.", ca: "El repte era imaginar i dissenyar una base lunar on poguessin viure astronautes. Vam fer un model 3D amb Tinkercad i vam escriure un document responent les preguntes de l'ESA sobre com funcionaria la base." }
+    ],
+    result: { en: "2nd place in Europe.", ca: "2n lloc a Europa." },
+    tools: ["Tinkercad"],
+    gallery: [
+      { src: "pimg/mooncamp-1.jpg", cap: { en: "The base", ca: "La base" } },
+      { src: "pimg/mooncamp-2.jpg", cap: { en: "Food growth chamber", ca: "Cambra de cultiu" } },
+      { src: "pimg/mooncamp-3.jpg", cap: { en: "Habitat module", ca: "Mòdul d'habitatge" }, contain: true }
+    ]
+  },
+  {
+    id: "first-projects", kind: "project",
+    cat: { en: "Early projects", ca: "Primers projectes" }, year: "2020",
+    title: { en: "My first engineering projects", ca: "Els meus primers projectes d'enginyeria" },
+    sub: { en: "Where it all started: a DIY racing drone and three Arduino projects, built at home in Barcelona.", ca: "On va començar tot: un dron de curses fet a mà i tres projectes amb Arduino, construïts a casa, a Barcelona." },
+    card: { en: "A DIY racing drone, an electronic instrument, a weather station and an RC car.", ca: "Un dron de curses fet a mà, un instrument electrònic, una estació meteorològica i un cotxe teledirigit." },
+    thumb: "pimg/early-drone.jpg",
+    facts: { when: "2020", where: "Barcelona" },
+    about: [
+      { en: "My first DIY drone. I've loved drones since I was a kid, and at the beginning of 2020 I thought about buying a racing drone. In the end I decided to build one myself. It wasn't easy or quick, but I enjoyed it a lot and learned even more.", ca: "El meu primer dron fet a mà. M'agraden els drons des de petit, i a principis de 2020 vaig pensar a comprar-me un dron de curses. Al final vaig decidir construir-me'l jo. No va ser fàcil ni ràpid, però m'ho vaig passar molt bé i vaig aprendre encara més." },
+      { en: "Arduino electronic instrument. The book example used resistors to make the notes and I didn't like how it sounded, so I switched to capacitive sensors, which I already knew from a STEAM project. I started with four notes and kept adding: combinations of sensors for more notes, a sixth sensor to change octave, a potentiometer for volume and a last sensor for sharps and flats. It covers almost two octaves, from C3 to B4, and you play it with both hands on the table.", ca: "Instrument electrònic amb Arduino. L'exemple del llibre feia servir resistències per fer les notes i no m'agradava com sonava, així que vaig passar a sensors capacitius, que ja coneixia d'un projecte STEAM. Vaig començar amb quatre notes i vaig anar afegint: combinacions de sensors per tenir més notes, un sisè sensor per canviar d'octava, un potenciòmetre per al volum i un últim sensor per als sostinguts i bemolls. Cobreix gairebé dues octaves, de Do3 a Si4, i es toca amb les dues mans sobre la taula." },
+      { en: "Weather station. A small home weather station with the usual humidity and temperature sensors, plus a gas sensor (MQ2) and a Geiger counter to detect nuclear radiation.", ca: "Estació meteorològica. Una petita estació meteorològica per a casa amb els sensors habituals d'humitat i temperatura, i a més un sensor de gas (MQ2) i un comptador Geiger per detectar radiació nuclear." },
+      { en: "Remote controlled car. A simple remote controlled car with Arduino.", ca: "Cotxe teledirigit. Un cotxe teledirigit senzill amb Arduino." }
+    ],
+    tools: ["Arduino", "FPV", "Soldering"],
+    gallery: [
+      { src: "pimg/early-drone.jpg", cap: { en: "Building my first drone", ca: "Construint el meu primer dron" } },
+      { src: "pimg/early-instrument.jpg", cap: { en: "Electronic instrument", ca: "Instrument electrònic" } },
+      { src: "pimg/early-instrument2.jpg", cap: { en: "The instrument's sensors", ca: "Els sensors de l'instrument" } },
+      { src: "pimg/early-weather.jpg", cap: { en: "Weather station circuit", ca: "Circuit de l'estació meteorològica" }, contain: true },
+      { src: "pimg/early-car.jpg", cap: { en: "RC car circuit", ca: "Circuit del cotxe teledirigit" }, contain: true },
+      { src: "pimg/early-remote.jpg", cap: { en: "Joystick controller", ca: "Comandament amb joystick" }, contain: true }
+    ]
+  },
+
+  /* ---------------- ACTIVITIES ---------------- */
+  {
+    id: "music", kind: "activity",
+    cat: { en: "Music", ca: "Música" }, year: { en: "2012 – now", ca: "2012 – ara" },
+    title: { en: "Viola and electric bass", ca: "Viola i baix elèctric" },
+    sub: { en: "Twelve years of professional classical studies on the viola, and five years playing electric bass with bands.", ca: "Dotze anys d'estudis professionals de música clàssica amb la viola, i cinc anys tocant el baix elèctric amb grups." },
+    card: { en: "Professional viola studies, orchestras, and concerts with bands on electric bass.", ca: "Estudis professionals de viola, orquestres i concerts amb grups tocant el baix elèctric." },
+    thumb: "pimg/music-violas.jpg",
+    facts: { when: { en: "2012 – now", ca: "2012 – ara" }, where: "IEA Oriol Martorell · Conservatori de Música de Barcelona" },
+    about: [
+      { en: "I studied professional classical music with the viola as my specialty from 2012 to 2024, at IEA Oriol Martorell and the Barcelona Music Conservatory, and I've played with orchestras and musical groups. I also play electric bass, and for five years I've performed with different bands in concerts in many places.", ca: "Vaig fer estudis professionals de música clàssica, especialitat viola, del 2012 al 2024, a l'IEA Oriol Martorell i al Conservatori de Música de Barcelona, i he col·laborat amb orquestres i grups musicals. També toco el baix elèctric, i fa cinc anys que toco amb diferents grups en concerts a molts llocs." }
+    ],
+    gallery: [ { src: "pimg/music-violas.jpg", cap: { en: "Viola section after a concert", ca: "La secció de violes després d'un concert" } } ]
+  },
+  {
+    id: "ironman", kind: "activity",
+    cat: { en: "Sport", ca: "Esport" }, year: "2025",
+    title: { en: "Solo Ironman", ca: "Ironman en solitari" },
+    sub: { en: "3.9 km swimming, 180.2 km cycling and a 42.2 km marathon. On my own.", ca: "3,9 km nedant, 180,2 km en bicicleta i una marató de 42,2 km. Tot sol." },
+    card: { en: "A full Ironman distance, alone, in Daytona Beach.", ca: "Una distància Ironman sencera, tot sol, a Daytona Beach." },
+    thumb: "pimg/ironman-finish.jpg",
+    facts: { when: { en: "December 2025", ca: "Desembre de 2025" }, where: "Daytona Beach, Florida" },
+    about: [
+      { en: "I did a full Ironman distance by myself: swim 3.9 km, ride 180.2 km and run a marathon (42.2 km).", ca: "Vaig fer una distància Ironman sencera pel meu compte: nedar 3,9 km, pedalar 180,2 km i córrer una marató (42,2 km)." }
+    ],
+    gallery: [
+      { src: "pimg/ironman-bike.jpg", cap: { en: "Bike: lots of eating", ca: "Bici: molt de menjar" } },
+      { src: "pimg/ironman-bike2.jpg", cap: { en: "Still on the bike", ca: "Encara a la bici" } },
+      { src: "pimg/ironman-night.jpg", cap: { en: "The last kilometres", ca: "Els últims quilòmetres" } },
+      { src: "pimg/ironman-finish.jpg", cap: { en: "Finished", ca: "Acabat" } }
+    ]
+  },
+  {
+    id: "oxfam", kind: "activity",
+    cat: { en: "Sport", ca: "Esport" }, year: "2024",
+    title: "OXFAM Trailwalker",
+    sub: { en: "A 75 km ultra across Catalonia in 14 hours, running for water.", ca: "Un ultra de 75 km per Catalunya en 14 hores, corrent per l'aigua." },
+    card: { en: "75 km in 14 hours to bring water to people in need.", ca: "75 km en 14 hores per portar aigua a qui la necessita." },
+    thumb: "pimg/oxfam-start.jpg",
+    facts: { when: { en: "April 2024", ca: "Abril de 2024" }, where: "Catalunya" },
+    about: [
+      { en: "I ran the 75 km of the OXFAM Trailwalker in 14 hours to raise money to bring water to people in need. I did the first 30 km with Genís and Francesc, great company, and the last 15 km with Tell, the best rabbit. At the Girona checkpoint, at km 55, we were in 5th place. Thanks to the support team and the organisation, I learned a lot and kept a good pace.", ca: "Vaig córrer els 75 km de l'OXFAM Trailwalker en 14 hores per recaptar diners per portar aigua a qui la necessita. Els primers 30 km els vaig fer amb el Genís i el Francesc, molt bona companyia, i els últims 15 km amb el Tell, la millor llebre. Al punt de control de Girona, al km 55, anàvem en 5a posició. Gràcies a l'equip de suport i a l'organització, vaig aprendre molt i vaig mantenir un bon ritme." }
+    ],
+    gallery: [
+      { src: "pimg/oxfam-start.jpg", cap: { en: "At the start", ca: "A la sortida" } },
+      { src: "pimg/oxfam-run.jpg", cap: { en: "Running", ca: "Corrent" } },
+      { src: "pimg/oxfam-food.jpg", cap: { en: "Refuelling", ca: "Recuperant forces" } }
+    ]
+  },
+  {
+    id: "judo", kind: "activity",
+    cat: { en: "Sport", ca: "Esport" }, year: { en: "12 years", ca: "12 anys" },
+    title: "Judo",
+    sub: { en: "Judo is what keeps me in balance, both emotionally and physically.", ca: "El judo és el que em manté en equilibri, tant emocionalment com físicament." },
+    card: { en: "12 years of training, with national-level competition.", ca: "12 anys d'entrenament, amb competició a nivell estatal." },
+    thumb: "pimg/judo-podium.jpg",
+    facts: { where: "Catalunya", when: { en: "12 years", ca: "12 anys" } },
+    about: [
+      { en: "I've trained judo for 12 years and competed at national level. Judo is what keeps me in balance, both emotionally and physically.", ca: "Fa 12 anys que entreno judo i he competit a nivell estatal. El judo és el que em manté en equilibri, tant emocionalment com físicament." }
+    ],
+    result: { en: "Medals at the Catalan Kyu Championship and the Catalan Ne-Waza Championship (2024).", ca: "Medalles al Campionat de Catalunya de kius i al Campionat de Catalunya de ne-waza (2024)." },
+    gallery: [ { src: "pimg/judo-podium.jpg", cap: { en: "On the podium", ca: "Al podi" } } ]
+  },
+  {
+    id: "volunteering", kind: "activity",
+    cat: { en: "Volunteering", ca: "Voluntariat" }, year: { en: "2022 – now", ca: "2022 – ara" },
+    title: { en: "Mentoring and STEAM outreach", ca: "Mentoria i divulgació STEAM" },
+    sub: { en: "Sharing what I've learned: STEAM activities, university application mentoring, school projects and science communication.", ca: "Compartir el que he après: activitats STEAM, mentoria per a sol·licituds universitàries, projectes d'escola i divulgació científica." },
+    card: { en: "Hope Place, Aditus, Aula Muntanya, Aula 2030 and CosmoCaixa.", ca: "Hope Place, Aditus, Aula Muntanya, Aula 2030 i CosmoCaixa." },
+    tile: "STEAM",
+    facts: { when: { en: "2022 – now", ca: "2022 – ara" }, where: "Daytona Beach · Barcelona" },
+    did: [
+      { en: "Hope Place, Halifax Urban Ministries (Sep 2026 – current): run weekly hands-on STEAM activities for children and families at a local family shelter", ca: "Hope Place, Halifax Urban Ministries (des de setembre de 2026): faig activitats STEAM pràctiques cada setmana per a infants i famílies en un alberg familiar" },
+      { en: "Aditus Program, Max Mazin Foundation (2026): guided local high-potential students through international university applications", ca: "Programa Aditus, Fundació Max Mazin (2026): vaig acompanyar estudiants d'alt potencial en les sol·licituds a universitats internacionals" },
+      { en: "Aula Muntanya (2023 – 2024): led multi-day trekking activities for 20+ younger students, ensuring safety and a positive experience", ca: "Aula Muntanya (2023 – 2024): vaig dirigir travesses de diversos dies per a més de 20 alumnes més petits, vetllant per la seguretat i per una bona experiència" },
+      { en: "Aula 2030 (2023 – 2024): led the school's carbon-neutrality project, supervising and collaborating with younger students", ca: "Aula 2030 (2023 – 2024): vaig liderar el projecte de neutralitat de carboni de l'escola, supervisant i col·laborant amb alumnes més petits" },
+      { en: "CosmoCaixa, Barcelona Science Museum (2022): engaged visitors in interactive science demonstrations as an explainer", ca: "CosmoCaixa, Museu de la Ciència de Barcelona (2022): vaig fer demostracions científiques interactives als visitants com a explicador" }
+    ]
+  }
+];
+
+/* ---------- rendering ---------- */
+let lang = "en";
+try {
+  const saved = localStorage.getItem("giol-lang");
+  if (saved === "ca" || saved === "en") lang = saved;
+  else if ((navigator.language || "").toLowerCase().startsWith("ca")) lang = "ca";
+} catch (e) {}
+
+const t = (x) => (x == null ? "" : typeof x === "string" ? x : x[lang]);
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+const projects = ITEMS.filter((i) => i.kind === "project");
+const activities = ITEMS.filter((i) => i.kind === "activity");
+
+function card(i) {
+  const thumb = i.thumb
+    ? `<img src="${i.thumb}" alt="" loading="lazy">`
+    : `<div class="tile" aria-hidden="true">${esc(i.tile || "")}</div>`;
+  return `<a class="card${i.wide ? " wide" : ""}" href="#${i.id}">
+    <div class="thumb">${thumb}${i.current ? `<span class="flag">${t(UI.current)}</span>` : ""}</div>
+    <p class="meta">${esc(t(i.year))} · ${esc(t(i.cat))}</p>
+    <h3 class="ct">${esc(t(i.title))}</h3>
+    <p>${esc(t(i.card))}</p>
+  </a>`;
+}
+
+function renderIndex() {
+  $("grid-projects").innerHTML = projects.map(card).join("");
+  $("grid-activities").innerHTML = activities.map(card).join("");
+  $("jump").innerHTML =
+    `<a href="#projects">${t(UI.hProjects)} <span>${projects.length}</span></a>` +
+    `<a href="#activities">${t(UI.hActivities)} <span>${activities.length}</span></a>`;
+}
+
+function renderDetail(i) {
+  const f = i.facts || {};
+  const fact = (k) => (f[k] ? `<div><dt>${t(UI[k])}</dt><dd>${esc(t(f[k]))}</dd></div>` : "");
+  const pos = ITEMS.indexOf(i);
+  const prev = ITEMS[(pos - 1 + ITEMS.length) % ITEMS.length];
+  const next = ITEMS[(pos + 1) % ITEMS.length];
+  const hero = i.gallery && i.gallery.length && !i.gallery[0].contain ? i.gallery[0] : null;
+  const rest = i.gallery ? (hero ? i.gallery.slice(1) : i.gallery) : [];
+  const facts = ["when", "where", "role", "team"].map(fact).join("");
+
+  $("detail").innerHTML = `
+    <a class="back" href="#${i.kind === "project" ? "projects" : "activities"}">${t(UI.back)}</a>
+    <header class="d-head">
+      <p class="eyebrow" style="margin:0">${esc(t(i.year))} · ${esc(t(i.cat))}</p>
+      <h1>${esc(t(i.title))}</h1>
+      <p class="sub">${esc(t(i.sub))}</p>
+    </header>
+    ${facts ? `<dl class="facts-d">${facts}</dl>` : ""}
+    ${hero ? `<figure class="d-hero"><img src="${hero.src}" alt="${esc(t(hero.cap))}"><figcaption>${esc(t(hero.cap))}</figcaption></figure>` : ""}
+    <div class="d-body">
+      <div class="txt">
+        ${i.about ? `<section><h2>${t(UI.about)}</h2>${i.about.map((p) => `<p>${esc(t(p))}</p>`).join("")}</section>` : ""}
+        ${i.did ? `<section><h2>${t(UI.whatIDid)}</h2><ul>${i.did.map((d) => `<li>${esc(t(d))}</li>`).join("")}</ul></section>` : ""}
+      </div>
+      <aside class="side">
+        ${i.result ? `<div class="result"><h2>${t(UI.result)}</h2><p>${esc(t(i.result))}</p></div>` : ""}
+        ${i.tools ? `<div><h3>${t(UI.tools)}</h3><ul class="tools">${i.tools.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+        ${i.links ? `<div class="links"><h3>${t(UI.links)}</h3>${i.links.map((l) => `<a href="${l.href}" target="_blank" rel="noopener">${esc(t(l.label))}</a>`).join("")}</div>` : ""}
+      </aside>
+    </div>
+    ${rest.length ? `<section class="gallery-wrap"><div class="sec-head"><h2>${t(UI.gallery)}</h2><span class="rule"></span></div>
+      <div class="gallery">${rest.map((g) => `<figure><img src="${g.src}" alt="${esc(t(g.cap))}" loading="lazy"${g.contain ? ' class="contain"' : ""}><figcaption>${esc(t(g.cap))}</figcaption></figure>`).join("")}</div></section>` : ""}
+    <nav class="pn" aria-label="More">
+      <a href="#${prev.id}"><small>${t(UI.prev)}</small><strong>${esc(t(prev.title))}</strong></a>
+      <a href="#${next.id}"><small>${t(UI.next)}</small><strong>${esc(t(next.title))}</strong></a>
+    </nav>`;
+}
+
+function route() {
+  const id = (location.hash || "").slice(1);
+  const item = ITEMS.find((i) => i.id === id);
+  $("index-view").hidden = !!item;
+  $("detail-view").hidden = !item;
+  if (item) { renderDetail(item); window.scrollTo(0, 0); document.title = t(item.title) + " · Giol Vinyals-i-Roca"; }
+  else {
+    document.title = "Portfolio · Giol Vinyals-i-Roca";
+    if (id) { const el = document.getElementById(id); if (el) el.scrollIntoView(); }
+  }
+}
+
+function render() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-k]").forEach((el) => (el.textContent = t(UI[el.dataset.k])));
+  $("btn-ca").setAttribute("aria-pressed", String(lang === "ca"));
+  $("btn-en").setAttribute("aria-pressed", String(lang === "en"));
+  renderIndex();
+  route();
+}
+
+document.querySelectorAll(".lang button").forEach((b) =>
+  b.addEventListener("click", () => {
+    lang = b.dataset.lang;
+    try { localStorage.setItem("giol-lang", lang); } catch (e) {}
+    render();
+  })
+);
+window.addEventListener("hashchange", route);
+
+$("copy").addEventListener("click", () => {
+  const btn = $("copy");
+  const done = () => { btn.textContent = t(UI.copied); setTimeout(() => (btn.textContent = t(UI.copy)), 1600); };
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents($("email")); const s = window.getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText($("email").textContent).then(done, fallback); } catch (e) { fallback(); }
+});
+
+render();
+</script>
+
+</body>
+</html>
