@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Giol Vinyals-i-Roca</title>
 <meta name="description" content="Giol Vinyals-i-Roca, aerospace engineering student at Embry-Riddle Aeronautical University. Research, experience, publications and awards.">
 <meta property="og:title" content="Giol Vinyals-i-Roca">
-<meta property="og:description" content="Aerospace Engineering student who learns by building.">
+<meta property="og:description" content="Giol Vinyals-i-Roca, aerospace engineering student at Embry-Riddle Aeronautical University. Research, experience, publications and awards.">
 <meta property="og:image" content="https://www.giol.cat/img/giol-goaero.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="img/logo.png">
-<title>Giol Vinyals-i-Roca</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -120,6 +120,10 @@ h2 {
 .band .role { font: 500 0.8125rem/1.5 var(--mono); margin: 0 0 1.25rem; }
 .band p.desc { margin: 0 0 1.25rem; max-width: 60ch; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
+.more { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.75rem; font: 500 0.8125rem/1 var(--mono); letter-spacing: 0.04em; text-decoration: none; background: var(--fg); color: var(--bg); padding: 0.85rem 1rem; }
+.more:hover { background: var(--yellow); color: var(--on-yellow); }
+.more-dark { background: var(--on-yellow); color: var(--yellow); }
+.more-dark:hover { background: var(--bg); color: var(--fg); }
 .tags li { font: 500 0.75rem/1 var(--mono); border: 1.5px solid var(--on-yellow); padding: 0.45rem 0.6rem; }
 .naut-photo { margin: 0; width: 100%; }
 .naut-photo img { display: block; width: 100%; height: auto; border: 3px solid var(--on-yellow); }
@@ -246,6 +250,7 @@ html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!i
         <p class="role" data-k="nautRole"></p>
         <p class="desc" data-k="nautDesc"></p>
         <ul class="tags" id="naut-tags"></ul>
+        <a class="more more-dark" href="portfolio.html#naut" data-ext data-k="moreNaut"></a>
       </div>
       <figure class="naut-photo">
         <img src="img/naut-early.jpg" width="1182" height="665" alt="" data-alt="nautAlt">
@@ -258,6 +263,7 @@ html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!i
     <div class="wrap">
       <div class="sec-head"><h2 data-k="hExp"></h2><span class="rule"></span></div>
       <ol class="tl" id="exp"></ol>
+      <a class="more" href="portfolio.html" data-ext data-k="morePortfolio"></a>
     </div>
   </section>
 
@@ -333,6 +339,8 @@ const SITE = {
     },
     nautCap: { en: "An early version of NAUT on the bench", ca: "Una versió antiga de NAUT al banc de proves" },
     nautAlt: { en: "Early NAUT prototype on a workbench, with the transmitter and laptop behind", ca: "Prototip antic de NAUT sobre el banc de treball, amb l'emissora i l'ordinador al darrere" },
+    moreNaut: { en: "Read more about NAUT →", ca: "Més sobre NAUT →" },
+    morePortfolio: { en: "See all projects and activities →", ca: "Tots els projectes i activitats →" },
     hExp: { en: "Experience", ca: "Experiència" },
     hPub: { en: "Research publications", ca: "Publicacions de recerca" },
     hEduAwards: { en: "Education and awards", ca: "Formació i reconeixements" },
@@ -351,6 +359,7 @@ const SITE = {
     { id: "publications", en: "Publications", ca: "Publicacions" },
     { id: "education", en: "Awards", ca: "Reconeixements" },
     { id: "about", en: "About me", ca: "Sobre mi" },
+    { href: "portfolio.html", en: "Portfolio", ca: "Portfoli" },
     { id: "contact", en: "Contact", ca: "Contacte" }
   ],
   facts: [
@@ -375,7 +384,7 @@ const SITE = {
         { en: "Directing manufacturing engineering efforts, troubleshooting assembly issues and implementing solutions collaboratively", ca: "Dirigeixo l'enginyeria de fabricació, resolent problemes de muntatge i implementant solucions en equip" },
         { en: "Creating detailed 3D models and engineering drawings in CATIA for propulsion and structural assemblies", ca: "Faig models 3D detallats i plànols d'enginyeria a CATIA dels conjunts de propulsió i estructura" }
       ],
-      note: { en: "My team received the Stage 1 US Innovation Award; currently working on Stage 3", ca: "El meu equip va rebre el Stage 1 US Innovation Award; ara treballem en l'Stage 3" }
+      note: { en: "My team received the Stage 1 NASA US University Innovation Award; currently working on Stage 3", ca: "El meu equip va rebre el Stage 1 NASA US University Innovation Award; ara treballem en l'Stage 3" }
     },
     {
       when: { en: "Jun – Aug 2026", ca: "jun – ago 2026" },
@@ -438,11 +447,11 @@ const SITE = {
   awards: [
     { when: "2026", what: "AIAA Foundation David and Catherine Thompson Space Technology Scholarship" },
     { when: "2026", what: "Vertical Flight Foundation (VFF) Scholarship" },
-    { when: "2025", what: "GoAero Stage 1 US University Innovation Award", sub: { en: "Team award", ca: "Premi d'equip" } },
+    { when: "2025", what: "GoAero Stage 1 NASA US University Innovation Award", sub: { en: "Team award", ca: "Premi d'equip" } },
     { when: "2025", what: "Embry-Riddle Honors Program Scholar", sub: { en: "Selected for academic excellence, leadership, and community engagement", ca: "Seleccionat per excel·lència acadèmica, lideratge i compromís amb la comunitat" } },
     { when: "2023 · 2024", what: "Purple Comet Math Meet", sub: { en: "Math team competition Spanish winner, 1st place (2024) and 2nd place (2023)", ca: "Competició de matemàtiques per equips, guanyadors a Espanya, 1r lloc (2024) i 2n lloc (2023)" } },
     { when: "2023 · 2024", what: { en: "Math sprint problems competition", ca: "Competició de problemes de matemàtiques sprint" }, sub: { en: "Team competition, 2 consecutive years winner", ca: "Competició per equips, guanyadors 2 anys seguits" } },
-    { when: "2021 · 2022", what: "ESA CanSat Competition", sub: { en: "Designed and built a can-sized satellite. Catalan edition winner. Team leader, SW & HW manager, mission designer", ca: "Vam dissenyar i construir un satèl·lit de la mida d'una llauna. Guanyadors de l'edició catalana. Cap d'equip, responsable de SW i HW, disseny de la missió" } },
+    { when: "2020 · 2021", what: "ESA CanSat Competition", sub: { en: "Designed and built a can-sized satellite. Catalan edition winner. Team leader, SW & HW manager, mission designer", ca: "Vam dissenyar i construir un satèl·lit de la mida d'una llauna. Guanyadors de l'edició catalana. Cap d'equip, responsable de SW i HW, disseny de la missió" } },
     { when: "2019", what: "ESA Moon Camp Challenge", sub: { en: "2nd place, European category", ca: "2n lloc, categoria europea" } }
   ],
   volunteering: [
@@ -493,7 +502,8 @@ function render() {
     else el.textContent = v;
   });
   document.querySelectorAll("[data-alt]").forEach((el) => (el.alt = t(SITE.ui[el.dataset.alt])));
-  $("links").innerHTML = SITE.nav.map((n) => `<a href="#${n.id}">${t(n)}</a>`).join("");
+  $("links").innerHTML = SITE.nav.map((n) => n.href ? `<a href="${n.href}" data-ext>${t(n)}</a>` : `<a href="#${n.id}">${t(n)}</a>`).join("");
+  document.querySelectorAll("[data-ext]").forEach((a) => { if (/^https?:/.test(a.getAttribute("href"))) { a.target = "_blank"; a.rel = "noopener"; } });
   $("facts").innerHTML = SITE.facts.map((f) => `<div class="fact"><strong>${f.k}</strong><span>${t(f)}</span></div>`).join("");
   $("naut-tags").innerHTML = SITE.nautTags.map((x) => `<li>${t(x)}</li>`).join("");
   $("exp").innerHTML = SITE.experience.map((e) => `
