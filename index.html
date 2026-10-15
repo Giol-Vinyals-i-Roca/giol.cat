@@ -66,6 +66,22 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outlin
 .links a { text-decoration: none; color: var(--muted); }
 .links a:hover { color: var(--fg); }
 @media (max-width: 760px) { .links { display: none; } }
+.nav-right { display: flex; align-items: center; gap: 0.75rem; }
+.nav-cta { font: 500 0.75rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; background: var(--yellow); color: var(--on-yellow); padding: 0.55rem 0.8rem; border: 1.5px solid var(--yellow); }
+.nav-cta:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.cta { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 1.5rem; font-family: var(--display); font-weight: 750; font-size: 1.0625rem; text-decoration: none; background: var(--fg); color: var(--bg); padding: 0.9rem 1.2rem; }
+.cta span[aria-hidden] { color: var(--yellow); transition: transform 0.2s ease; }
+.cta:hover span[aria-hidden] { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) { .cta span[aria-hidden] { transition: none; } }
+.fgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+@media (max-width: 760px) { .fgrid { grid-template-columns: 1fr; } }
+.fcard { display: flex; flex-direction: column; text-decoration: none; color: inherit; min-width: 0; }
+.fcard img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--surface); border-bottom: 3px solid var(--fg); }
+.fcard:hover img { border-bottom-color: var(--yellow); }
+.fcard small { font: 500 0.75rem/1.4 var(--mono); color: var(--muted); letter-spacing: 0.04em; margin-top: 0.85rem; }
+.fcard strong { font-family: var(--display); font-weight: 750; font-size: 1.1875rem; line-height: 1.25; margin: 0.3rem 0 0.35rem; }
+.fcard span { color: var(--muted); font-size: 0.9375rem; }
+.fcard:hover strong { text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 3px; text-underline-offset: 4px; }
 .lang { display: inline-flex; border: 1.5px solid var(--fg); }
 .lang button {
   font: 500 0.75rem/1 var(--mono); letter-spacing: 0.06em;
@@ -99,6 +115,8 @@ h1 .hl { background: linear-gradient(transparent 62%, var(--yellow) 62%, var(--y
 .facts .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--fg); }
 @media (max-width: 760px) { .facts .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .fact { padding-block: 1rem; padding-right: 1rem; border-bottom: 1px solid var(--line); }
+.fact strong a { text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 3px; text-underline-offset: 4px; }
+.fact strong a:hover { background: var(--yellow); color: var(--on-yellow); }
 .fact strong { display: block; font-family: var(--display); font-stretch: 112%; font-weight: 800; font-size: 1.375rem; line-height: 1.2; }
 .fact span { font-size: 0.8125rem; color: var(--muted); }
 
@@ -183,6 +201,10 @@ h3 { font: 500 0.75rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: 
 @media (max-width: 860px) { .beyond { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 440px) { .beyond { grid-template-columns: 1fr; } }
 .beyond div { display: flex; flex-direction: column; }
+.b-img { display: block; }
+.b-img:hover img { border-bottom-color: var(--yellow); }
+.b-link { text-decoration: none; }
+.b-link:hover { text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 3px; text-underline-offset: 4px; }
 .beyond img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--surface); margin-bottom: 0.75rem; border-bottom: 2px solid var(--fg); }
 .beyond strong { display: block; font-family: var(--display); font-stretch: 112%; font-weight: 750; font-size: 1.0625rem; }
 .beyond span { color: var(--muted); font-size: 0.9375rem; }
@@ -212,11 +234,14 @@ html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!i
 
 <header class="nav">
   <div class="wrap">
-    <a class="mark" href="#top"><img src="img/logo.png" width="30" height="30" alt="">GVR</a>
+    <a class="mark" href="#top"><img src="img/logo.png" width="30" height="30" alt="">GViR</a>
     <nav class="links" id="links" aria-label="Sections"></nav>
+    <div class="nav-right">
+    <a class="nav-cta" href="portfolio.html" data-ext data-k="navPortfolio"></a>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" id="btn-ca" data-lang="ca">CA</button>
       <button type="button" id="btn-en" data-lang="en">EN</button>
+    </div>
     </div>
   </div>
 </header>
@@ -308,8 +333,6 @@ html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!i
       </div>
       <div class="social">
         <a href="https://www.linkedin.com/in/giol-vinyals-i-roca-01353b290/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/giol_vinyals.i.roca/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://doi.org/10.2514/6.2025-98502" target="_blank" rel="noopener">AIAA 2025</a>
       </div>
     </div>
   </section>
@@ -325,7 +348,7 @@ html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!i
 const SITE = {
   ui: {
     eyebrow: { en: "Aerospace Engineering Student · Embry-Riddle Aeronautical University", ca: "Estudiant d'Enginyeria Aeroespacial · Embry-Riddle Aeronautical University" },
-    tagline: { en: "Aerospace Engineering student who learns by building.", ca: "Estudiant d'enginyeria aeroespacial que aprèn construint." },
+    tagline: { en: "Aerospace Engineering student who learns by creating.", ca: "Estudiant d'enginyeria aeroespacial que aprèn creant." },
     about: {
       en: "I am an aerospace engineering student specializing in astronautics, with a strong background in honors courses, research, and practical development of flight systems. I have experience in propulsion, avionics, RF hardware, and autonomous UAS and rotorcraft projects, and I am driven by the long-term goal of contributing to human space exploration as an astronaut. I aspire to drive innovative space and flight technologies that expand exploration capabilities and generate significant benefits on Earth.",
       ca: "Sóc un estudiant d'enginyeria aeroespacial especialitzat en astronàutica, amb un sòlid recorregut en assignatures d'honors, recerca i desenvolupament pràctic de sistemes de vol. Tinc experiència en propulsió, aviònica, maquinari de RF i projectes d'UAS autònoms i d'aeronaus de rotor, i em mou l'objectiu a llarg termini de contribuir a l'exploració espacial humana com a astronauta. Aspiro a impulsar tecnologies espacials i de vol innovadores que ampliïn les capacitats d'exploració i generin beneficis importants a la Terra."
@@ -340,7 +363,10 @@ const SITE = {
     nautCap: { en: "An early version of NAUT on the bench", ca: "Una versió antiga de NAUT al banc de proves" },
     nautAlt: { en: "Early NAUT prototype on a workbench, with the transmitter and laptop behind", ca: "Prototip antic de NAUT sobre el banc de treball, amb l'emissora i l'ordinador al darrere" },
     moreNaut: { en: "Read more about NAUT →", ca: "Més sobre NAUT →" },
-    morePortfolio: { en: "See all projects and activities →", ca: "Tots els projectes i activitats →" },
+    morePortfolio: { en: "See the full portfolio →", ca: "Tot el portfoli →" },
+    navPortfolio: { en: "Portfolio", ca: "Portfoli" },
+    heroCta: { en: "See my projects", ca: "Mira els meus projectes" },
+    hFeatured: { en: "Featured projects", ca: "Projectes destacats" },
     hExp: { en: "Experience", ca: "Experiència" },
     hPub: { en: "Research publications", ca: "Publicacions de recerca" },
     hEduAwards: { en: "Education and awards", ca: "Formació i reconeixements" },
@@ -359,17 +385,17 @@ const SITE = {
     { id: "publications", en: "Publications", ca: "Publicacions" },
     { id: "education", en: "Awards", ca: "Reconeixements" },
     { id: "about", en: "About me", ca: "Sobre mi" },
-    { href: "portfolio.html", en: "Portfolio", ca: "Portfoli" },
     { id: "contact", en: "Contact", ca: "Contacte" }
   ],
   facts: [
     { k: "4.0 GPA", en: "Honors Program, Dean's List", ca: "Honors Program, Dean's List" },
     { k: "SciTech 2027", en: "AIAA abstract accepted", ca: "Abstract acceptat a l'AIAA" },
-    { k: "AIAA 2025", en: "Published mission proposal", ca: "Proposta de missió publicada" },
-    { k: "USA + EU", en: "Certified drone pilot", ca: "Pilot de dron certificat" }
+    { k: "AIAA 2025", url: "https://doi.org/10.2514/6.2025-98502", en: "Published mission proposal", ca: "Proposta de missió publicada" },
+    { k: "EU + USA", en: "Certified drone pilot", ca: "Pilot de dron certificat" }
   ],
   nautTags: [
     { en: "Abstract accepted at AIAA SciTech 2027", ca: "Abstract acceptat a AIAA SciTech 2027" },
+    { en: "AURA Enhanced Scholars Track", ca: "Beca AURA Enhanced Scholars Track" },
     { en: "IGNITE grant recipient", ca: "Beca IGNITE" },
     { en: "Paper in preparation", ca: "Article en preparació" }
   ],
@@ -476,10 +502,10 @@ const SITE = {
     }
   ],
   beyond: [
-    { img: "img/about-fpv.jpg", k: "FPV", en: "8+ years flying and building FPV drones", ca: "Més de 8 anys pilotant i construint drons FPV" },
-    { img: "img/about-judo.jpg", k: "Judo", en: "12 years of training with national-level competition experience", ca: "12 anys d'entrenament, amb competició a nivell estatal" },
-    { img: "img/about-oxfam.jpg", k: { en: "Mountain and endurance", ca: "Muntanya i resistència" }, en: "Climbed Mount Kilimanjaro, completed a solo Ironman, ran a 75 km ultra for OXFAM to bring water to people in need", ca: "He pujat el Kilimanjaro, he fet un Ironman en solitari i he corregut un ultra de 75 km per a OXFAM per portar aigua a qui la necessita" },
-    { img: "img/about-viola.jpg", k: { en: "Music", ca: "Música" }, en: "12+ years of classical viola; 5 years performing electric bass with bands in concerts at diverse locations", ca: "Més de 12 anys de viola clàssica; 5 anys tocant el baix elèctric amb diferents grups en concerts arreu" }
+    { img: "img/about-fpv.jpg", link: "portfolio.html#first-projects", k: "FPV", en: "8+ years flying and building FPV drones", ca: "Més de 8 anys pilotant i construint drons FPV" },
+    { img: "img/about-judo.jpg", link: "portfolio.html#judo", k: "Judo", en: "12 years of training with national-level competition experience", ca: "12 anys d'entrenament, amb competició a nivell estatal" },
+    { img: "img/about-oxfam.jpg", link: "portfolio.html#oxfam", k: { en: "Mountain and endurance", ca: "Muntanya i resistència" }, en: "Climbed Mount Kilimanjaro, completed a solo Ironman, ran a 75 km ultra for OXFAM to bring water to people in need", ca: "He pujat el Kilimanjaro, he fet un Ironman en solitari i he corregut un ultra de 75 km per a OXFAM per portar aigua a qui la necessita" },
+    { img: "img/about-viola.jpg", link: "portfolio.html#music", k: { en: "Music", ca: "Música" }, en: "12+ years of classical viola; 5 years performing electric bass with bands in concerts at diverse locations", ca: "Més de 12 anys de viola clàssica; 5 anys tocant el baix elèctric amb diferents grups en concerts arreu" }
   ]
 };
 
@@ -503,8 +529,7 @@ function render() {
   });
   document.querySelectorAll("[data-alt]").forEach((el) => (el.alt = t(SITE.ui[el.dataset.alt])));
   $("links").innerHTML = SITE.nav.map((n) => n.href ? `<a href="${n.href}" data-ext>${t(n)}</a>` : `<a href="#${n.id}">${t(n)}</a>`).join("");
-  document.querySelectorAll("[data-ext]").forEach((a) => { if (/^https?:/.test(a.getAttribute("href"))) { a.target = "_blank"; a.rel = "noopener"; } });
-  $("facts").innerHTML = SITE.facts.map((f) => `<div class="fact"><strong>${f.k}</strong><span>${t(f)}</span></div>`).join("");
+  $("facts").innerHTML = SITE.facts.map((f) => `<div class="fact"><strong>${f.url ? `<a href="${f.url}" target="_blank" rel="noopener">${f.k} ↗</a>` : f.k}</strong><span>${t(f)}</span></div>`).join("");
   $("naut-tags").innerHTML = SITE.nautTags.map((x) => `<li>${t(x)}</li>`).join("");
   $("exp").innerHTML = SITE.experience.map((e) => `
     <li${e.img ? ' class="has-img"' : ""}>
@@ -530,7 +555,8 @@ function render() {
   $("awards").innerHTML = SITE.awards.map(row).join("");
   $("vol").innerHTML = SITE.volunteering.map(row).join("");
   $("about-me").innerHTML = SITE.aboutMe.map((p) => `<p>${t(p)}</p>`).join("");
-  $("beyond-list").innerHTML = SITE.beyond.map((b) => `<div>${b.img ? `<img src="${b.img}" alt="" loading="lazy">` : ""}<strong>${t(b.k)}</strong><span>${t(b)}</span></div>`).join("");
+  $("beyond-list").innerHTML = SITE.beyond.map((b) => `<div>${b.img ? (b.link ? `<a class="b-img" href="${b.link}" data-ext aria-label="${t(b.k)}"><img src="${b.img}" alt="" loading="lazy"></a>` : `<img src="${b.img}" alt="" loading="lazy">`) : ""}<strong>${b.link ? `<a class="b-link" href="${b.link}" data-ext>${t(b.k)} →</a>` : t(b.k)}</strong><span>${t(b)}</span></div>`).join("");
+  document.querySelectorAll("[data-ext]").forEach((a) => { if (/^https?:/.test(a.getAttribute("href"))) { a.target = "_blank"; a.rel = "noopener"; } });
   $("btn-ca").setAttribute("aria-pressed", String(lang === "ca"));
   $("btn-en").setAttribute("aria-pressed", String(lang === "en"));
 }

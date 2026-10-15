@@ -288,7 +288,7 @@ html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!i
 
 <header class="nav">
   <div class="wrap">
-    <a class="mark" href="#top"><img src="img/logo.png" width="30" height="30" alt="">GVR</a>
+    <a class="mark" href="#top"><img src="img/logo.png" width="30" height="30" alt="">GViR</a>
     <nav class="links" aria-label="Sections">
       <a id="nav-home" href="index.html" data-k="navHome"></a>
       <a href="#projects" data-k="hProjects"></a>
@@ -340,7 +340,6 @@ html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!i
       </div>
       <div class="social">
         <a href="https://www.linkedin.com/in/giol-vinyals-i-roca-01353b290/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/giol_vinyals.i.roca/" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
   </section>
@@ -384,7 +383,7 @@ const ITEMS = [
     title: "NAUT",
     sub: { en: "Nano Aircraft using Underactuated Technology. A MAV bicopter with cyclic blade pitch control and no swashplate.", ca: "Nano Aircraft using Underactuated Technology. Un bicòpter MAV amb control cíclic del pas de les pales i sense plat cíclic." },
     card: { en: "My own rotorcraft research program: cyclic pitch control from an underactuated rotor.", ca: "El meu propi programa de recerca en aeronaus de rotor: control cíclic amb un rotor subactuat." },
-    thumb: "pimg/naut-early.jpg",
+    thumb: "pimg/naut-poster.jpg",
     facts: {
       when: { en: "Dec 2025 – current", ca: "des de desembre de 2025" },
       where: "Center for Advanced Air Mobility (CAAM), Embry-Riddle",
@@ -397,10 +396,14 @@ const ITEMS = [
     did: [
       { en: "Designed the NAUT vehicle and its swashplateless rotor", ca: "Vaig dissenyar el vehicle NAUT i el seu rotor sense plat cíclic" },
       { en: "Rapid prototyping and manufacturing, integrating custom components and iterative design updates", ca: "Prototipatge ràpid i fabricació, integrant components propis i iteracions de disseny" },
-      { en: "Conducting testing, performance analysis, and validation", ca: "Proves, anàlisi de prestacions i validació" }
+      { en: "Conducting testing, performance analysis, and validation", ca: "Proves, anàlisi de prestacions i validació" },
+      { en: "Presented the project with a poster at Embry-Riddle's Discovery Day", ca: "Vaig presentar el projecte amb un pòster al Discovery Day d'Embry-Riddle" }
     ],
-    result: { en: "Abstract accepted at AIAA SciTech 2027, IGNITE grant recipient, paper in preparation.", ca: "Abstract acceptat a AIAA SciTech 2027, beca IGNITE i article en preparació." },
-    gallery: [ { src: "pimg/naut-early.jpg", cap: { en: "An early version of NAUT on the bench", ca: "Una versió antiga de NAUT al banc de proves" } } ]
+    result: { en: "Abstract accepted at AIAA SciTech 2027, AURA Enhanced Scholars Track and IGNITE grant recipient, paper in preparation.", ca: "Abstract acceptat a AIAA SciTech 2027, beca AURA Enhanced Scholars Track i beca IGNITE, i article en preparació." },
+    gallery: [
+      { src: "pimg/naut-poster.jpg", cap: { en: "Presenting NAUT at Discovery Day, Embry-Riddle", ca: "Presentant NAUT al Discovery Day d'Embry-Riddle" } },
+      { src: "pimg/naut-early.jpg", cap: { en: "An early version of NAUT on the bench", ca: "Una versió antiga de NAUT al banc de proves" } }
+    ]
   },
   {
     id: "goaero", kind: "project", current: true,
@@ -408,7 +411,7 @@ const ITEMS = [
     title: "GoAero · Team Talon",
     sub: { en: "An electric VTOL aircraft for emergency rescue missions, built at the Eagle Flight Research Center.", ca: "Una aeronau VTOL elèctrica per a missions de rescat d'emergència, construïda a l'Eagle Flight Research Center." },
     card: { en: "Propulsion, avionics and manufacturing for a rescue VTOL. Stage 1 NASA award winner.", ca: "Propulsió, aviònica i fabricació d'un VTOL de rescat. Premiat per la NASA a l'Stage 1." },
-    thumb: "pimg/goaero-team.jpg",
+    thumb: "pimg/goaero-talon.jpg",
     facts: {
       when: { en: "Oct 2024 – current", ca: "des d'octubre de 2024" },
       where: "Eagle Flight Research Center, Daytona Beach",
@@ -430,6 +433,7 @@ const ITEMS = [
     tools: ["CATIA", "Simulation", "Manufacturing"],
     gallery: [
       { src: "pimg/goaero-field.jpg", cap: { en: "Preparing Talon v2 on the test field", ca: "Preparant el Talon v2 al camp de proves" } },
+      { src: "pimg/goaero-talon.jpg", cap: { en: "With Talon, our Stage 2 demonstrator", ca: "Amb el Talon, el nostre demostrador de l'Stage 2" } },
       { src: "pimg/goaero-3d.jpg", cap: { en: "CAD model", ca: "Model CAD" }, contain: true },
       { src: "pimg/goaero-scheme.jpg", cap: { en: "From sketches to the rescue concept", ca: "Dels esbossos al concepte de rescat" }, contain: true },
       { src: "pimg/goaero-tests.jpg", cap: { en: "Field tests", ca: "Proves de camp" } },
@@ -626,6 +630,19 @@ const ITEMS = [
       { en: "I studied professional classical music with the viola as my specialty from 2012 to 2024, at IEA Oriol Martorell and the Barcelona Music Conservatory, and I've played with orchestras and musical groups. I also play electric bass, and for five years I've performed with different bands in concerts in many places.", ca: "Vaig fer estudis professionals de música clàssica, especialitat viola, del 2012 al 2024, a l'IEA Oriol Martorell i al Conservatori de Música de Barcelona, i he col·laborat amb orquestres i grups musicals. També toco el baix elèctric, i fa cinc anys que toco amb diferents grups en concerts a molts llocs." }
     ],
     gallery: [ { src: "pimg/music-violas.jpg", cap: { en: "Viola section after a concert", ca: "La secció de violes després d'un concert" } } ]
+  },
+  {
+    id: "girona-trail", kind: "activity",
+    cat: { en: "Sport", ca: "Esport" }, year: "2026",
+    title: "Trailwalker Girona",
+    sub: { en: "An ultra trail of 55 km with 2,000 m of elevation gain.", ca: "Un ultra trail de 55 km amb 2.000 m de desnivell positiu." },
+    card: { en: "55 km and 2,000 m of climbing, and I made it to the finish.", ca: "55 km i 2.000 m de desnivell, i vaig arribar a meta." },
+    thumb: "pimg/girona-finish.jpg",
+    facts: { when: { en: "Summer 2026", ca: "Estiu de 2026" }, where: "Girona" },
+    about: [
+      { en: "In the summer of 2026 I ran the Trailwalker in Girona, an ultra trail of 55 km with 2,000 m of elevation gain.", ca: "L'estiu de 2026 vaig córrer la Trailwalker de Girona, un ultra trail de 55 km amb 2.000 m de desnivell positiu." }
+    ],
+    gallery: [ { src: "pimg/girona-finish.jpg", cap: { en: "At the finish, with the medal", ca: "A meta, amb la medalla" } } ]
   },
   {
     id: "ironman", kind: "activity",
