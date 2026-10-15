@@ -248,7 +248,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 .facts-d dt { font: 500 0.6875rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
 .facts-d dd { margin: 0; font-weight: 600; font-size: 0.9375rem; overflow-wrap: anywhere; }
 .d-hero { margin: 0 0 2.5rem; }
-.d-hero img { display: block; width: 100%; max-height: 34rem; object-fit: cover; background: var(--surface); }
+.d-hero img { display: block; width: auto; max-width: 100%; height: auto; max-height: 40rem; }
 .d-hero figcaption, .gallery figcaption { font: 400 0.75rem/1.5 var(--mono); color: var(--muted); margin-top: 0.45rem; }
 .d-body { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 2.5rem 3.5rem; align-items: start; }
 @media (max-width: 860px) { .d-body { grid-template-columns: 1fr; } }
@@ -685,7 +685,7 @@ const ITEMS = [
     title: "Judo",
     sub: { en: "Judo is what keeps me in balance, both emotionally and physically.", ca: "El judo és el que em manté en equilibri, tant emocionalment com físicament." },
     card: { en: "12 years of training. 2nd at the Catalan Kyu Championships in 2024.", ca: "12 anys d'entrenament. 2n als Campionats de Catalunya de kyus el 2024." },
-    thumb: "pimg/judo-podium-fcj.jpg",
+    thumb: "pimg/judo-podium-fcj.jpg", thumbPos: "center top",
     facts: { where: "Catalunya", when: { en: "12 years", ca: "12 anys" } },
     about: [
       { en: "I've trained judo for 12 years and competed at national level. Judo is what keeps me in balance, both emotionally and physically.", ca: "Fa 12 anys que entreno judo i he competit a nivell estatal. El judo és el que em manté en equilibri, tant emocionalment com físicament." }
@@ -748,7 +748,7 @@ const activities = ITEMS.filter((i) => i.kind === "activity");
 
 function card(i) {
   const thumb = i.thumb
-    ? `<img src="${i.thumb}" alt="" loading="lazy">`
+    ? `<img src="${i.thumb}" alt="" loading="lazy"${i.thumbPos ? ` style="object-position:${i.thumbPos}"` : ""}>`
     : `<div class="tile" aria-hidden="true">${esc(i.tile || "")}</div>`;
   return `<a class="card${i.wide ? " wide" : ""}" href="#${i.id}">
     <div class="thumb">${thumb}${i.current ? `<span class="flag">${t(UI.current)}</span>` : ""}</div>
