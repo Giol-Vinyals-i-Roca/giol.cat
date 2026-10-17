@@ -164,6 +164,7 @@ h2 {
 .tl ul { margin: 0; padding-left: 1.1rem; max-width: 66ch; }
 .tl ul li { margin-bottom: 0.25rem; }
 .tl ul li::marker { color: var(--muted); }
+.exp-link { font-size: 0.9375rem; text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .note { margin: 0.6rem 0 0; font-size: 0.875rem; display: flex; gap: 0.5rem; align-items: baseline; }
 .note::before { content: ""; width: 0.55rem; height: 0.55rem; background: var(--yellow); flex: none; transform: translateY(-0.05rem); }
 
@@ -403,6 +404,12 @@ const SITE = {
   ],
   experience: [
     {
+      when: { en: "Dec 2025 – current", ca: "des 2025 – actualitat" },
+      org: "Center for Advanced Air Mobility (CAAM) · NAUT",
+      role: { en: "Founder and Principal Investigator", ca: "Fundador i investigador principal" },
+      link: { href: "#research", label: { en: "My own rotorcraft research program, see Current research ↑", ca: "El meu propi programa de recerca en aeronaus de rotor, mira Recerca actual ↑" } }
+    },
+    {
       when: { en: "Oct 2024 – current", ca: "oct 2024 – actualitat" },
       org: "Eagle Flight Research Center · GoAero Competition",
       role: { en: "Manufacturing Lead · Propulsion System and Avionics Engineer", ca: "Cap de fabricació · Enginyer de sistema de propulsió i aviònica" },
@@ -539,7 +546,8 @@ function render() {
       <div>
         <p class="org">${t(e.org)}</p>
         <p class="role-line">${t(e.role)}</p>
-        <ul>${e.points.map((p) => `<li>${t(p)}</li>`).join("")}</ul>
+        ${e.points ? `<ul>${e.points.map((p) => `<li>${t(p)}</li>`).join("")}</ul>` : ""}
+        ${e.link ? `<a class="exp-link" href="${e.link.href}">${t(e.link.label)}</a>` : ""}
         ${e.note ? `<p class="note">${t(e.note)}</p>` : ""}
       </div>
       ${e.img ? `<figure><img src="${e.img.src}" alt="${t(e.img.alt)}" loading="lazy"></figure>` : ""}

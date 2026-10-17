@@ -265,7 +265,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 .side { display: grid; gap: 1.5rem; }
 .tools { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0 !important; margin: 0; }
 .tools li { font: 500 0.75rem/1 var(--mono); border: 1.5px solid var(--fg); padding: 0.4rem 0.55rem; margin: 0 !important; }
-.links a { display: block; font-family: var(--mono); font-size: 0.875rem; padding-block: 0.25rem; text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.d-links a { display: block; font-family: var(--mono); font-size: 0.875rem; padding-block: 0.25rem; text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; overflow-wrap: anywhere; }
 .gallery-wrap { margin-top: 3rem; }
 .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem 1rem; }
 @media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -431,6 +431,7 @@ const ITEMS = [
     ],
     result: { en: "Our team received the Stage 1 NASA US University Innovation Award. In Stage 2 we built and tested Talon v2, a 40%-scale demonstrator.", ca: "El nostre equip va rebre el Stage 1 NASA US University Innovation Award. A l'Stage 2 vam construir i provar el Talon v2, un demostrador a escala del 40%." },
     tools: ["CATIA", "Simulation", "Manufacturing"],
+    links: [ { href: "https://erau.edu/about/news-and-stories/news/embry-riddle-student-team-creates-a-life-saving-aircraft-for-emergency-response", label: { en: "Embry-Riddle news: Student Team Creates a Life-Saving Aircraft for Emergency Response", ca: "Notícia d'Embry-Riddle: Student Team Creates a Life-Saving Aircraft for Emergency Response" } } ],
     gallery: [
       { src: "pimg/goaero-field.jpg", cap: { en: "Preparing Talon v2 on the test field", ca: "Preparant el Talon v2 al camp de proves" } },
       { src: "pimg/goaero-talon.jpg", cap: { en: "With Talon, our Stage 2 demonstrator", ca: "Amb el Talon, el nostre demostrador de l'Stage 2" } },
@@ -716,6 +717,7 @@ const ITEMS = [
   },
   {
     id: "volunteering", kind: "activity", wide: true,
+    didLabel: { en: "What I've done", ca: "Què he fet" },
     cat: { en: "Volunteering", ca: "Voluntariat" }, year: { en: "2022 – now", ca: "2022 – ara" },
     title: { en: "Mentoring and STEAM outreach", ca: "Mentoria i divulgació STEAM" },
     sub: { en: "Sharing what I've learned: STEAM activities, university application mentoring, school projects and science communication.", ca: "Compartir el que he après: activitats STEAM, mentoria per a sol·licituds universitàries, projectes d'escola i divulgació científica." },
@@ -788,12 +790,12 @@ function renderDetail(i) {
     <div class="d-body">
       <div class="txt">
         ${i.about ? `<section><h2>${t(UI.about)}</h2>${i.about.map((p) => `<p>${esc(t(p))}</p>`).join("")}</section>` : ""}
-        ${i.did ? `<section><h2>${t(UI.whatIDid)}</h2><ul>${i.did.map((d) => `<li>${esc(t(d))}</li>`).join("")}</ul></section>` : ""}
+        ${i.did ? `<section><h2>${t(i.didLabel || UI.whatIDid)}</h2><ul>${i.did.map((d) => `<li>${esc(t(d))}</li>`).join("")}</ul></section>` : ""}
       </div>
       <aside class="side">
         ${i.result ? `<div class="result"><h2>${t(UI.result)}</h2><p>${esc(t(i.result))}</p></div>` : ""}
         ${i.tools ? `<div><h3>${t(UI.tools)}</h3><ul class="tools">${i.tools.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
-        ${i.links ? `<div class="links"><h3>${t(UI.links)}</h3>${i.links.map((l) => `<a href="${l.href}" target="_blank" rel="noopener">${esc(t(l.label))}</a>`).join("")}</div>` : ""}
+        ${i.links ? `<div class="d-links"><h3>${t(UI.links)}</h3>${i.links.map((l) => `<a href="${l.href}" target="_blank" rel="noopener">${esc(t(l.label))}</a>`).join("")}</div>` : ""}
       </aside>
     </div>
     ${rest.length ? `<section class="gallery-wrap"><div class="sec-head"><h2>${t(UI.gallery)}</h2><span class="rule"></span></div>
