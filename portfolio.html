@@ -221,10 +221,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 .card { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
 @media (min-width: 901px) { .card.wide { grid-column: span 2; } .card.wide .thumb { aspect-ratio: 2.72 / 1; } }
-.card .thumb { position: relative; aspect-ratio: 4 / 3; background: var(--surface); overflow: hidden; border-bottom: 3px solid var(--fg); }
+.card .thumb { position: relative; aspect-ratio: 4 / 3; background: var(--surface); overflow: hidden; border-top: 3px solid var(--fg); }
 .card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }
 .card:hover .thumb img { transform: scale(1.03); }
-.card:hover .thumb, .card:focus-visible .thumb { border-bottom-color: var(--yellow); }
+.card:hover .thumb, .card:focus-visible .thumb { border-top-color: var(--yellow); }
 .card .tile {
   width: 100%; height: 100%; display: grid; place-items: center; background: var(--fg); color: var(--yellow);
   font-family: var(--display); font-stretch: 125%; font-weight: 850; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.01em;
@@ -288,7 +288,7 @@ html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!i
 
 <header class="nav">
   <div class="wrap">
-    <a class="mark" href="#top"><img src="img/logo.png" width="30" height="30" alt="">GViR</a>
+    <a class="mark" href="index.html" aria-label="Home"><img src="img/logo.png" width="30" height="30" alt="">GViR</a>
     <nav class="links" aria-label="Sections">
       <a id="nav-home" href="index.html" data-k="navHome"></a>
       <a href="#projects" data-k="hProjects"></a>
