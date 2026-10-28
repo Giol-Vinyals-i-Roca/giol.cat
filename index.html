@@ -205,10 +205,10 @@ h3 { font: 500 0.75rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: 
 @media (max-width: 440px) { .beyond { grid-template-columns: 1fr; } }
 .beyond div { display: flex; flex-direction: column; }
 .b-img { display: block; }
-.b-img:hover img { border-bottom-color: var(--yellow); }
+.b-img:hover img { border-top-color: var(--yellow); }
 .b-link { text-decoration: none; }
 .b-link:hover { text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 3px; text-underline-offset: 4px; }
-.beyond img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--surface); margin-bottom: 0.75rem; border-bottom: 2px solid var(--fg); }
+.beyond img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--surface); margin-bottom: 0.75rem; border-top: 2px solid var(--fg); }
 .beyond strong { display: block; font-family: var(--display); font-stretch: 112%; font-weight: 750; font-size: 1.0625rem; }
 .beyond span { color: var(--muted); font-size: 0.9375rem; }
 
@@ -483,7 +483,7 @@ const SITE = {
     { when: "2026", what: "AIAA Foundation David and Catherine Thompson Space Technology Scholarship" },
     { when: "2026", what: "Vertical Flight Foundation (VFF) Scholarship" },
     { when: "2025", what: "GoAero Stage 1 NASA US University Innovation Award", sub: { en: "Team award", ca: "Premi d'equip" } },
-    { when: "2025", what: "Embry-Riddle Honors Program Scholar", sub: { en: "Selected for academic excellence, leadership, and community engagement", ca: "Seleccionat per excel·lència acadèmica, lideratge i compromís amb la comunitat" } },
+    { when: { en: "2025 – current", ca: "2025 – actualitat" }, what: "Embry-Riddle Honors Program Scholar", sub: { en: "Selected for academic excellence, leadership, and community engagement", ca: "Seleccionat per excel·lència acadèmica, lideratge i compromís amb la comunitat" } },
     { when: "2023 · 2024", what: "Purple Comet Math Meet", sub: { en: "Math team competition Spanish winner, 1st place (2024) and 2nd place (2023)", ca: "Competició de matemàtiques per equips, guanyadors a Espanya, 1r lloc (2024) i 2n lloc (2023)" } },
     { when: "2023 · 2024", what: { en: "Math sprint problems competition", ca: "Competició de problemes de matemàtiques sprint" }, sub: { en: "Team competition, 2 consecutive years winner", ca: "Competició per equips, guanyadors 2 anys seguits" } },
     { when: "2020 · 2021", what: "ESA CanSat Competition", sub: { en: "Designed and built a can-sized satellite. Catalan edition winner. Team leader, SW & HW manager, mission designer", ca: "Vam dissenyar i construir un satèl·lit de la mida d'una llauna. Guanyadors de l'edició catalana. Cap d'equip, responsable de SW i HW, disseny de la missió" } },
